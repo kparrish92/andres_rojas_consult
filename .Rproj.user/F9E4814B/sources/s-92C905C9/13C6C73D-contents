@@ -25,7 +25,7 @@ Overall, I took the following steps in the analysis:
 
 1. I imported and tidyed the data. The scripts that I used is available in this github repo under `scripts/01_tidy_srt.R`. In addition to the script to tidy the data, I also wrote a function `run_t_test` to help run paired t-tests per participant that can be used later (and to more or less automate further analysis in this style). This function's source code can be found in this repo under `scripts/00_helpers.R`
 
-2. I ran the scripts and analyzed the data to within this document, please see the results below, and made all analysis available in this Github repository ().
+2. I ran the scripts and analyzed the data to within this document, please see the results below, and made all analysis available in this Github repository (https://github.com/kparrish92/andres_rojas_consult).
 
 ### Results 
 
