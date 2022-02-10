@@ -1,0 +1,159 @@
+"","sentence","tap","trill","duration_taps","duration_trills","occlusions"
+"2","1","(papa)",NA,NA,NA,NA
+"3","2","ahora",NA,"19",NA,"1 True"
+"4","3",NA,"ahorra",NA,"18","1"
+"5","4","(uno)",NA,NA,NA,NA
+"6","5","vara",NA,"13",NA,"approximant"
+"7","6",NA,"barra",NA,"15","0"
+"8","7","(pata)",NA,NA,NA,NA
+"9","8","coral ",NA,"19",NA,"approximant"
+"10","9",NA,"corral",NA,"37","0"
+"11","10","(duelo)",NA,NA,NA,NA
+"12","11","caro",NA,"22",NA,"1 True"
+"13","12",NA,"carro",NA,"21","0"
+"14","13","(cuna)",NA,NA,NA,NA
+"15","14","pera",NA,"10",NA,"approximant"
+"16","15",NA,"perra",NA,"18","1"
+"17","16","(huelo)",NA,NA,NA,NA
+"18","17","careta",NA,"18",NA,"approximant"
+"19","18",NA,"carreta",NA,"11","0"
+"20","19","(cena)",NA,NA,NA,NA
+"21","20","encerar",NA,"26",NA,"approximant"
+"22","20b","encerar",NA,"118",NA,"approximant"
+"23","21",NA,"encerrar",NA,"20","0"
+"24","21b","encerrar",NA,"127",NA,"approximant"
+"25","22","(pena)",NA,NA,NA,NA
+"26","23","perito",NA,"18",NA,"approximant"
+"27","24",NA,"perrito",NA,"128","2"
+"28","25","(invita)",NA,NA,NA,NA
+"29","26","pero",NA,"28",NA,"approximant"
+"30","27",NA,"perro",NA,"32","1"
+"31","28","(incita)",NA,NA,NA,NA
+"32","29","cero",NA,"19",NA,"approximant"
+"33","30",NA,"cerro",NA,"29","1"
+"34","31","(pato)",NA,NA,NA,NA
+"35","32",NA,"reto",NA,"17","1"
+"36","33",NA,"rifa",NA,"9","0"
+"37","34","(cometa)",NA,NA,NA,NA
+"38","35",NA,"risa",NA,"26","1"
+"39","36",NA,"rojo",NA,"85","0"
+"40","37","(gato)",NA,NA,NA,NA
+"41","38",NA,"ropa",NA,"22","0"
+"42","39",NA,"borracho",NA,"59","1"
+"43","40","(hilo)",NA,NA,NA,NA
+"44","41",NA,"carreta",NA,"34","1"
+"45","42",NA,"perrita",NA,"42","1"
+"46","43","(cono)",NA,NA,NA,NA
+"47","44",NA,"jarrita",NA,"34","1"
+"48","45",NA,"barrilete",NA,"49","1"
+"49","46","(camisa)",NA,NA,NA,NA
+"50","47",NA,"guitarra",NA,"29","1"
+"51","48",NA,"torre",NA,"23","1"
+"52","49","(clase)",NA,NA,NA,NA
+"53","50",NA,"burro ",NA,"60","0"
+"54","51",NA,"zorro",NA,"54","0"
+"55","52","(cómico)",NA,NA,NA,NA
+"56","53",NA,"tierra",NA,"41","1"
+"57","54",NA,"sonrisa",NA,"72","0"
+"58","55","(tiempo)",NA,NA,NA,NA
+"59","56",NA,"alrededor",NA,"42","1"
+"60","56b","alrededor",NA,"53",NA,"approximant"
+"61","57",NA,"enriquece",NA,"27","0"
+"62","58","(mango)",NA,NA,NA,NA
+"63","59",NA,"honrado",NA,"52","0"
+"64","60",NA,"israel",NA,"45","0"
+"65","61","(cometa)",NA,NA,NA,NA
+"66","62","cara",NA,"25",NA,"approximant"
+"67","63","madera",NA,"28",NA,"1 True"
+"68","64","(música)",NA,NA,NA,NA
+"69","65","cereza",NA,"28",NA,"1 True"
+"70","66","quiero",NA,"24",NA,"1 True"
+"71","67","(médico)",NA,NA,NA,NA
+"72","68","pereza",NA,"34",NA,"1 True"
+"73","69a","parar",NA,"20",NA,"approximant"
+"74","69b","parar",NA,"92",NA,"approximant"
+"75","70","(mesa)",NA,NA,NA,NA
+"76","71a","querer",NA,"25",NA,"approximant"
+"77","71b","querer",NA,"36",NA,"approximant"
+"78","72a","morir",NA,"39",NA,"approximant"
+"79","72b","morir",NA,"140",NA,"approximant"
+"80","73","(amigo)",NA,NA,NA,NA
+"81","74a","mirar",NA,"29",NA,"1 True"
+"82","74b","mirar",NA,"62",NA,"approximant"
+"83","75a","tirar",NA,"N/A",NA,"perceptual"
+"84","75b","tirar",NA,"126",NA,"approximant"
+"85","76","(cocina)",NA,NA,NA,NA
+"86","77a","morder",NA,"45",NA,"approximant"
+"87","77b","morder",NA,"136",NA,"approximant"
+"88","78a","marcar",NA,"50",NA,"approximant"
+"89","78b","marcar",NA,"105",NA,"approximant"
+"90","79","(tiza)",NA,NA,NA,NA
+"91","80a","cortar ",NA,"42",NA,"approximant"
+"92","80b","cortar ",NA,"86",NA,"approximant"
+"93","81a","hurtar",NA,"79",NA,"approximant"
+"94","81b","hurtar",NA,"125",NA,"approximant"
+"95","82","(dieta)",NA,NA,NA,NA
+"96","83a","perder",NA,"18",NA,"approximant"
+"97","83b","perder",NA,"79",NA,"approximant"
+"98","84a","torero",NA,"30",NA,"1 True"
+"99","84b","torero",NA,"38",NA,"approximant"
+"100","85","(agua)",NA,NA,NA,NA
+"101","86a","perecer",NA,"N/A",NA,"perceptual"
+"102","86b","perecer",NA,"N/A",NA,"perceptual"
+"103","87a","colorear",NA,"38",NA,"approximant"
+"104","87b","colorear",NA,"165",NA,"approximant"
+"105","88","(café)",NA,NA,NA,NA
+"106","89a","mercurio",NA,"54",NA,"approximant"
+"107","89b","mercurio",NA,"48",NA,"1 True"
+"108","90a","arteria",NA,"N/A",NA,"perceptual"
+"109","90b","arteria",NA,"77",NA,"approximant"
+"110","91","(dibujo)",NA,NA,NA,NA
+"111","92a",NA,"radicar",NA,"31","0"
+"112","92b","radicar",NA,"81",NA,"approximant"
+"113","93a",NA,"rifar",NA,"38","0"
+"114","93b","rifar",NA,"81",NA,"approximant"
+"115","94","(venta)",NA,NA,NA,NA
+"116","95a",NA,"rodar",NA,"44","0"
+"117","95b","rodar",NA,"N/A",NA,"perceptual"
+"118","96a",NA,"romper",NA,"32","0"
+"119","96b","romper",NA,"41",NA,"approximant"
+"120","97","(siete)",NA,NA,NA,NA
+"121","98a",NA,"rumor",NA,"69","0"
+"122","98b","rumor",NA,"77",NA,"approximant"
+"123","99a",NA,"raro",NA,"11","0"
+"124","99b","raro",NA,"43",NA,"approximant"
+"125","100","(ocho)",NA,NA,NA,NA
+"126","101a",NA,"ropero",NA,"63","1"
+"127","101b","ropero",NA,"25",NA,"approximant"
+"128","102a",NA,"ratero",NA,"24","0"
+"129","102b","ratero",NA,"34",NA,"approximant"
+"130","103","(mayo)",NA,NA,NA,NA
+"131","104a",NA,"carrera ",NA,"25","1"
+"132","104b","carrera",NA,"33",NA,"1 True"
+"133","105a",NA,"rapero",NA,"22","0"
+"134","105b","rapero",NA,"47",NA,"1 True"
+"135","106","(semana)",NA,NA,NA,NA
+"136","107a",NA,"barrer",NA,"32","1"
+"137","107b","barrer",NA,"61",NA,"approximant"
+"138","108a",NA,"correr",NA,"88","1"
+"139","108b","correr",NA,"88",NA,"approximant"
+"140","109","(antes)",NA,NA,NA,NA
+"141","110a",NA,"narrar",NA,"25","1"
+"142","110b","narrar",NA,"66",NA,"approximant"
+"143","111a",NA,"borrar",NA,"36","0"
+"144","111b","borrar",NA,"70",NA,"approximant"
+"145","112","(estoy)",NA,NA,NA,NA
+"146","113a",NA,"cerrar ",NA,"52","0"
+"147","113b","cerrar",NA,"94",NA,"approximant"
+"148","114a",NA,"derribar",NA,"43","1"
+"149","114b","derribar",NA,"121",NA,"approximant"
+"150","115","(común)",NA,NA,NA,NA
+"151","116a",NA,"corregir",NA,"27","0"
+"152","116b","corregir",NA,"146",NA,"approximant"
+"153","117a",NA,"irritar",NA,"50","1"
+"154","117b","irritar",NA,"59",NA,"approximant"
+"155","118","(menos)",NA,NA,NA,NA
+"156","119a",NA,"interrogar",NA,"N/A","0"
+"157","119b","interrogar",NA,"132",NA,"approximant"
+"158","120a",NA,"corredor",NA,"N/A","0"
+"159","120b","corredor",NA,"97",NA,"approximant"

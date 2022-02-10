@@ -1,0 +1,10 @@
+"0","srt_t_test <- read.csv(here(""data"", ""tidy"", ""srt_t_tests.csv"")) "
+"0",""
+"0","filt1 <- srt_t_test %>%"
+"0","  filter(tap_or_trill = ""tap"") "
+"2","Error: Problem with `filter()` input `..1`.
+[31mx[39m Input `..1` is named.
+[34mℹ[39m This usually means that you've used `=` instead of `==`.
+[34mℹ[39m Did you mean `tap_or_trill == ""tap""`?
+[90mRun `rlang::last_error()` to see where the error occurred.[39m
+"

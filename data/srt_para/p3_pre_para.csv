@@ -1,0 +1,107 @@
+"","sentence","para","duration","occlusions","note_taps_for_this_participant_seem_to_be_stable_at_pre_task_trills_are_not_trills_are_produced_as_taps"
+"1","1","para","24","1 True",NA
+"2","2","para","50","approximant",NA
+"3","3","para","18","approximant",NA
+"4","4","para","18","1 True",NA
+"5","5","para","22","1 True",NA
+"6","6","para","35","approximant",NA
+"7","7","para","19","approximant",NA
+"8","8","para","14","1 True",NA
+"9","9","para","18","approximant",NA
+"10","10","para","16","approximant",NA
+"11","11","para","22","approximant",NA
+"12","13","para","24","approximant",NA
+"13","14","para","17","approximant",NA
+"14","15","para","17","approximant",NA
+"15","17","para","26","approximant",NA
+"16","18","para","33","1 True",NA
+"17","19","para","29","1 True",NA
+"18","21","para","22","approximant",NA
+"19","22","para","12","approximant",NA
+"20","24","para","84","approximant",NA
+"21","25","para","26","1 True",NA
+"22","26","para","26","approximant",NA
+"23","28","para","26","approximant",NA
+"24","29","para","25","approximant",NA
+"25","31","para","19","approximant","AUDIO 3"
+"26","32","para","27","approximant",NA
+"27","34","para","20","1 True",NA
+"28","35","para","30","1 True",NA
+"29","36","para","29","approximant",NA
+"30","37","para","26","1 True",NA
+"31","38","para","22","approximant",NA
+"32","39","para","40","approximant",NA
+"33","40","para","25","approximant",NA
+"34","41","para","33","1 True",NA
+"35","42","para","27","1 True",NA
+"36","43","para","30","1 True",NA
+"37","44","para","43","1 True",NA
+"38","45","para","21","approximant",NA
+"39","46","para","17","approximant","AUDIO 4"
+"40","47","para","34","1 True",NA
+"41","48","para","30","approximant",NA
+"42","49","para","31","approximant",NA
+"43","50","para","40","1 True",NA
+"44","51","para","24","approximant",NA
+"45","52","para","20","approximant",NA
+"46","53","para","21","approximant",NA
+"47","54","para","24","approximant",NA
+"48","55","para","28","approximant",NA
+"49","56","para","46","approximant",NA
+"50","57","para","31","approximant",NA
+"51","58","para","29","1 True",NA
+"52","59","para","33","approximant",NA
+"53","60","para","42","approximant",NA
+"54","61","para","24","1 True","AUDIO 6"
+"55","62","para","22","approximant",NA
+"56","63","para","28","1 True",NA
+"57","64","para","20","approximant",NA
+"58","65","para","22","1 True",NA
+"59","66","para","26","approximant",NA
+"60","67","para","37","1 True",NA
+"61","69b","para","37","approximant",NA
+"62","70","para","24","approximant",NA
+"63","71b","para","36","approximant",NA
+"64","72a","para","46","1 True",NA
+"65","73","para","36","approximant",NA
+"66","74b","para","21","approximant",NA
+"67","75b","para","35","approximant",NA
+"68","76","para","30","approximant","AUDIO 7"
+"69","78b","para","32","approximant",NA
+"70","79","para","26","approximant",NA
+"71","80b","para","32","approximant",NA
+"72","81b","para","50","approximant",NA
+"73","82","para","32","approximant",NA
+"74","83b","para","37","approximant",NA
+"75","84b","para","32","approximant",NA
+"76","85","para","23","approximant",NA
+"77","88","para","28","approximant",NA
+"78","89b","para","37","1 True",NA
+"79","90b","para","22","approximant",NA
+"80","91","para","37","1 True","AUDIO 8"
+"81","92b","para","32","approximant","NOTA: N/A means it wasn't possible to determine its duration. The wave form overlap with the vowel and the boundaries couldn't be determined. "
+"82","93b","para","30","approximant",NA
+"83","94","para","28","approximant",NA
+"84","95b","para","21","1 True",NA
+"85","96b","para","33","approximant",NA
+"86","97","para","28","approximant",NA
+"87","98b","para","32","approximant",NA
+"88","99b","para","48","approximant",NA
+"89","100","para","39","approximant",NA
+"90","103","para","28","approximant",NA
+"91","104b","para","32","approximant",NA
+"92","105b","para","40","approximant","Fin AUDIO 8"
+"93","106","para","28","1 True","Audio 9"
+"94","107a","para","35","approximant",NA
+"95","108a","para","77","approximant",NA
+"96","109","para","39","approximant",NA
+"97","110a","para","40","approximant",NA
+"98","111a","para","33","approximant",NA
+"99","112","para","29","approximant",NA
+"100","114a","para","46","1 True",NA
+"101","115","para","44","approximant",NA
+"102","116a","para","33","approximant",NA
+"103","117a","para","30","1 True",NA
+"104","118","para","37","1 True",NA
+"105","119a","para","24","approximant",NA
+"106","119b",NA,"40","1 True",NA

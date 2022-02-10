@@ -1,0 +1,159 @@
+"","sentence","tap","trill","duration_taps","duration","occlusions"
+"2","1",NA,NA,NA,NA,NA
+"3","2","ahora",NA,"28",NA,"1 True"
+"4","3",NA,"ahorra",NA,"80","1 + frication (dr)"
+"5","4","(uno)",NA,NA,NA,NA
+"6","5","vara",NA,"14",NA,"1 True"
+"7","6",NA,"barra",NA,"85","2 + frication (dr)"
+"8","7","(pata)",NA,NA,NA,NA
+"9","8","coral ",NA,"63",NA,"approximant"
+"10","9",NA,"corral",NA,"54","1 + frication (dr)"
+"11","10","(duelo)",NA,NA,NA,NA
+"12","11","caro",NA,"17",NA,"1 True"
+"13","12",NA,"carro",NA,"74","1 + frication (dr)"
+"14","13","(cuna)",NA,NA,NA,NA
+"15","14","pera",NA,"28",NA,"1 True"
+"16","15",NA,"perra",NA,"78","3 + frication (dr)"
+"17","16","(huelo)",NA,NA,NA,NA
+"18","17","careta",NA,"29",NA,"1 True"
+"19","18",NA,"carreta",NA,"78","3 + frication (dr)"
+"20","19","(cena)",NA,NA,NA,NA
+"21","20","encerar",NA,"18",NA,"1 True"
+"22","20b","encerar",NA,"25",NA,"1 True"
+"23","21",NA,"encerrar",NA,"57","2 + frication (dr)"
+"24","21b","encerrar",NA,"43",NA,"1 True"
+"25","22","(pena)",NA,NA,NA,NA
+"26","23","perito",NA,"28",NA,"1 True"
+"27","24",NA,"perrito",NA,"49","3 + frication (dr)"
+"28","25","(invita)",NA,NA,NA,NA
+"29","26","pero",NA,"33",NA,"1 True"
+"30","27",NA,"perro",NA,"77","2 + frication (dr)"
+"31","28","(incita)",NA,NA,NA,NA
+"32","29","cero",NA,"30",NA,"1 True"
+"33","30",NA,"cerro",NA,"76","3 + frication (dr)"
+"34","31","(pato)",NA,NA,NA,NA
+"35","32",NA,"reto",NA,"38","1"
+"36","33",NA,"rifa",NA,"51","2"
+"37","34","(cometa)",NA,NA,NA,NA
+"38","35",NA,"risa",NA,"41","2"
+"39","36",NA,"rojo",NA,"33","2"
+"40","37","(gato)",NA,NA,NA,NA
+"41","38",NA,"ropa",NA,"41","2"
+"42","39",NA,"borracho",NA,"110","3 + frication (dr)"
+"43","40","(hilo)",NA,NA,NA,NA
+"44","41",NA,"carreta",NA,"64","2 + frication (dr)"
+"45","42",NA,"perrita",NA,"66","2 + frication (dr)"
+"46","43","(cono)",NA,NA,NA,NA
+"47","44",NA,"jarrita",NA,"67","2 + frication (dr)"
+"48","45",NA,"barrilete",NA,"69","3 + frication (dr)"
+"49","46","(camisa)",NA,NA,NA,NA
+"50","47",NA,"guitarra",NA,"76","2 + frication (dr)"
+"51","48",NA,"torre",NA,"63","2 + frication (dr)"
+"52","49","(clase)",NA,NA,NA,NA
+"53","50",NA,"burro ",NA,"69","2 + frication (dr)"
+"54","51",NA,"zorro",NA,"59","1 + frication (dr)"
+"55","52","(cómico)",NA,NA,NA,NA
+"56","53",NA,"tierra",NA,"78","2 + frication"
+"57","54",NA,"sonrisa",NA,"24","1"
+"58","55","(tiempo)",NA,NA,NA,NA
+"59","56",NA,"alrededor",NA,"92","3"
+"60","56b","alrededor",NA,"28",NA,"1 True"
+"61","57",NA,"enriquece",NA,"67","1 + /d/ sound"
+"62","58","(mango)",NA,NA,NA,NA
+"63","59",NA,"honrado",NA,"N/A","0"
+"64","60",NA,"israel",NA,"N/A","0"
+"65","61","(cometa)",NA,NA,NA,NA
+"66","62","cara",NA,"19",NA,"1 True"
+"67","63","madera",NA,"16",NA,"1 True"
+"68","64","(música)",NA,NA,NA,NA
+"69","65","cereza",NA,"35",NA,"1 True"
+"70","66","quiero",NA,"15",NA,"1 True"
+"71","67","(médico)",NA,NA,NA,NA
+"72","68","pereza",NA,"39",NA,"1 True"
+"73","69a","parar",NA,"46",NA,"1 True"
+"74","69b","parar",NA,"45",NA,"1 True"
+"75","70","(mesa)",NA,NA,NA,NA
+"76","71a","querer",NA,"29",NA,"1 True"
+"77","71b","querer",NA,"27",NA,"1 True"
+"78","72a","morir",NA,"27",NA,"1 True"
+"79","72b","morir",NA,"34",NA,"1 True"
+"80","73","(amigo)",NA,NA,NA,NA
+"81","74a","mirar",NA,"29",NA,"1 True"
+"82","74b","mirar",NA,"33",NA,"1 True"
+"83","75a","tirar",NA,"25",NA,"1 True"
+"84","75b","tirar",NA,"26",NA,"1 True"
+"85","76","(cocina)",NA,NA,NA,NA
+"86","77a","morder",NA,"45",NA,"approximant"
+"87","77b","morder",NA,"35",NA,"1 True"
+"88","78a","marcar",NA,"19",NA,"1 True"
+"89","78b","marcar",NA,"35",NA,"approximant"
+"90","79","(tiza)",NA,NA,NA,NA
+"91","80a","cortar ",NA,"15",NA,"1 True"
+"92","80b","cortar ",NA,"25",NA,"1 True"
+"93","81a","hurtar",NA,"24",NA,"approximant"
+"94","81b","hurtar",NA,"38",NA,"approximant"
+"95","82","(dieta)",NA,NA,NA,NA
+"96","83a","perder",NA,"37",NA,"1 True"
+"97","83b","perder",NA,"40",NA,"1 True"
+"98","84a","torero",NA,"36",NA,"1 True"
+"99","84b","torero",NA,"23",NA,"1 True"
+"100","85","(agua)",NA,NA,NA,NA
+"101","86a","perecer",NA,"25",NA,"1 True"
+"102","86b","perecer",NA,"22",NA,"1 True"
+"103","87a","colorear",NA,"47",NA,"1 True /d/"
+"104","87b","colorear",NA,"33",NA,"approximant"
+"105","88","(café)",NA,NA,NA,NA
+"106","89a","mercurio",NA,"24",NA,"1 True"
+"107","89b","mercurio",NA,"31",NA,"approximant"
+"108","90a","arteria",NA,"26",NA,"1 True"
+"109","90b","arteria",NA,"28",NA,"1 True"
+"110","91","(dibujo)",NA,NA,NA,NA
+"111","92a",NA,"radicar",NA,"47","1"
+"112","92b","radicar",NA,"47",NA,"approximant"
+"113","93a",NA,"rifar",NA,"48","2"
+"114","93b","rifar",NA,"29",NA,"1 True"
+"115","94","(venta)",NA,NA,NA,NA
+"116","95a",NA,"rodar",NA,"70","2"
+"117","95b","rodar",NA,"27",NA,"1 True"
+"118","96a",NA,"romper",NA,"90","2 + frication (dr)"
+"119","96b","romper",NA,"34",NA,"approximant"
+"120","97","(siete)",NA,NA,NA,NA
+"121","98a",NA,"rumor",NA,"115","2 + frication (dr)"
+"122","98b","rumor",NA,"28",NA,"1 True"
+"123","99a",NA,"raro",NA,"66","2 + frication (dr)"
+"124","99b","raro",NA,"21",NA,"1 True"
+"125","100","(ocho)",NA,NA,NA,NA
+"126","101a",NA,"ropero",NA,"96","2 + frication (dr)"
+"127","101b","ropero",NA,"19",NA,"1 true"
+"128","102a",NA,"ratero",NA,"69","1 /l/ "
+"129","102b","ratero",NA,"25",NA,"1 True"
+"130","103","(mayo)",NA,NA,NA,NA
+"131","104a",NA,"carrera ",NA,"63","2 + frication"
+"132","104b","carrera",NA,"28",NA,"1 True"
+"133","105a",NA,"rapero",NA,"59","2 + frication"
+"134","105b","rapero",NA,"16",NA,"1 True"
+"135","106","(semana)",NA,NA,NA,NA
+"136","107a",NA,"barrer",NA,"55","2 + frication (dr)"
+"137","107b","barrer",NA,"23",NA,"1 True"
+"138","108a",NA,"correr",NA,"64","2 + frication (dr)"
+"139","108b","correr",NA,"39",NA,"1 True"
+"140","109","(antes)",NA,NA,NA,NA
+"141","110a",NA,"narrar",NA,"66","2 + frication (dr)"
+"142","110b","narrar",NA,"25",NA,"1 True"
+"143","111a",NA,"borrar",NA,"64","2 + frication (dr)"
+"144","111b","borrar",NA,"23",NA,"1 True"
+"145","112","(estoy)",NA,NA,NA,NA
+"146","113a",NA,"cerrar ",NA,"66","2 + frication (dr)"
+"147","113b","cerrar",NA,"33",NA,"1 True"
+"148","114a",NA,"derribar",NA,"62","2 + frication (dr)"
+"149","114b","derribar",NA,"15",NA,"1 True"
+"150","115","(común)",NA,NA,NA,NA
+"151","116a",NA,"corregir",NA,"62","2 + frication (dr)"
+"152","116b","corregir",NA,"32",NA,"1 True (l)"
+"153","117a",NA,"irritar",NA,"64","2 + frication (dr)"
+"154","117b","irritar",NA,"21",NA,"1 True"
+"155","118","(menos)",NA,NA,NA,NA
+"156","119a",NA,"interrogar",NA,"59","2 + frication (dr)"
+"157","119b","interrogar",NA,"38",NA,"1 True"
+"158","120a",NA,"corredor",NA,"77","2 + frication (dr)"
+"159","120b","corredor",NA,"26",NA,"1 True"
