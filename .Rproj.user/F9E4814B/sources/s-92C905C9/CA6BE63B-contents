@@ -109,11 +109,11 @@ Table 3: Results of Paired t-tests of taps comparing duration during pre and pos
 ```
 
 
+
 First, table 3 shows the results of each t-test in which tap duration production is compared from pre to post test. 
 The results suggest that the duration of taps by participant P1E fell by 
 `r srt_t_test$estimate[1] %>% round(digits = 2)*-1` (95% CI `r srt_t_test$ci_hi[1] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[1] %>% round(digits = 2)*-1`), as determined by a paired t-test (t(`r srt_t_test$df[1]`) = `r srt_t_test$t_val[1] %>% round(digits = 3)`, p < .05).
-The results of the same test procedure suggested a decrease of `r srt_t_test$estimate[3] %>% round(digits = 2)*-1`ms (95% CI `r srt_t_test$ci_hi[3] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[3] %>% round(digits = 2)*-1`; t(`r srt_t_test$df[3]`) = `r srt_t_test$t_val[3] %>% round(digits = 3)`, p < .005) in participant P3E, while participant P5E actually showed evidence of an increased duration in rhotic production for taps of `r srt_t_test$estimate[5] %>% round(digits = 2)` (95% CI `r srt_t_test$ci_hi[5] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[5] %>% round(digits = 2)*-1`), as determined by a paired t-test (t(`r srt_t_test$df[5]`) = `r srt_t_test$t_val[5] %>% round(digits = 3)`, p < .246).
-Importantly, the results of the paired t-test for P5E were inconclusive, suggesting that there was no evidence that training was effective for this participant.
+The results of the same test procedure suggested a decrease of `r srt_t_test$estimate[3] %>% round(digits = 2)*-1`ms (95% CI `r srt_t_test$ci_hi[3] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[3] %>% round(digits = 2)*-1`; t(`r srt_t_test$df[3]`) = `r srt_t_test$t_val[3] %>% round(digits = 3)`, p < .005) in participant P3E, while participant P5E actually showed evidence of an increased duration in rhotic production for taps of `r srt_t_test$estimate[5] %>% round(digits = 2)` (95% CI `r srt_t_test$ci_hi[5] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[5] %>% round(digits = 2)`), as determined by a paired t-test (t(`r srt_t_test$df[5]`) = `r srt_t_test$t_val[5] %>% round(digits = 3)`, p < .05).
 
 ```{r}
 srt_t_test %>%
@@ -124,15 +124,9 @@ srt_t_test %>%
 
 ```
 
-Table 4 shows an analogous analysis in trill production in which pre-test duration was compared to post-test duration. P1E duration fell by 
-`r srt_t_test$estimate[2] %>% round(digits = 2)*-1` (95% CI `r srt_t_test$ci_hi[2] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[2] %>% round(digits = 2)*-1`; t(`r srt_t_test$df[2]`) = `r srt_t_test$t_val[2] %>% round(digits = 3)`, p < .005).
-On the other hand, P3E showed evidence of an increase in duration of `r srt_t_test$estimate[4] %>% round(digits = 2)`ms (95% CI `r srt_t_test$ci_lo[4] %>% round(digits = 2)` - `r srt_t_test$ci_hi[4] %>% round(digits = 2)`; t(`r srt_t_test$df[4]`) = `r srt_t_test$t_val[4] %>% round(digits = 3)`, p < .005)  while P5E's trill duration also increased from pre to post test by `r srt_t_test$estimate[6] %>% round(digits = 2)`ms (95% CI `r srt_t_test$ci_hi[6] %>% round(digits = 2)*-1` - `r srt_t_test$ci_lo[6] %>% round(digits = 2)`), as determined by a paired t-test (t(`r srt_t_test$df[6]`) = `r srt_t_test$t_val[6] %>% round(digits = 3)`, p < .1).
-Again, P5E did not show evidence of distinct performance in trill production from pre to post tests.
 
-### Plots
 
-Here are a few boxplots by participant.
-These plots show the distribution of responses per participant in both taps (Figure 1) and trills (Figure 2) between the pre and post tests. 
+P1E	66	0.019	-2.399	-6.149	-11.266	-1.032
 
 **Figure 1: Productions of taps per participant during the pre and post test**
 ```{r, dpi = 300}
@@ -167,9 +161,4 @@ srt %>%
         legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Trills")
 ```
 
-### Conclusions 
-
-It looks like there is good evidence that training worked for P3E, while P1E did show a decrease in duration for taps, but not an increase for trills, though this effect was small. 
-P5E did not appear to respond to training, as pre and post tests were inconclusive.
-Overall, adding more participants should reveal whether there is a group trend and paint a clearer picture in terms of how much variation in the effectiveness of training exists. 
 
