@@ -947,3 +947,319 @@
 "946","119b","interrogar","25","1 True","P5E","sp1","PRE",156,"tap"
 "947","120a","corredor","14","1","P5E","sp1","PRE",157,"trill"
 "948","120b","corredor","13","1 True","P5E","sp1","PRE",158,"tap"
+"949","1","NA","NA",NA,"P6E","sp1","POST",1,NA
+"950","2","ahora","43","1 True","P6E","sp1","POST",2,"tap"
+"951","3","ahorra","61","2","P6E","sp1","POST",3,"trill"
+"952","4","(uno)","NA",NA,"P6E","sp1","POST",4,NA
+"953","5","vara","19","1 True","P6E","sp1","POST",5,"tap"
+"954","6","barra","62","2","P6E","sp1","POST",6,"trill"
+"955","7","(pata)","NA",NA,"P6E","sp1","POST",7,NA
+"956","8","coral ","18","1 True","P6E","sp1","POST",8,"tap"
+"957","9","corral","69","3","P6E","sp1","POST",9,"trill"
+"958","10","(duelo)","NA",NA,"P6E","sp1","POST",10,NA
+"959","11","caro","10","1 True","P6E","sp1","POST",11,"tap"
+"960","12","carro","60","2","P6E","sp1","POST",12,"trill"
+"961","13","(cuna)","NA",NA,"P6E","sp1","POST",13,NA
+"962","14","pera","27","1 True","P6E","sp1","POST",14,"trill"
+"963","15","perra","41","1","P6E","sp1","POST",15,"trill"
+"964","16","(huelo)","NA",NA,"P6E","sp1","POST",16,NA
+"965","17","careta","20","1 True","P6E","sp1","POST",17,"tap"
+"966","18","carreta","65","2","P6E","sp1","POST",18,"trill"
+"967","19","(cena)","NA",NA,"P6E","sp1","POST",19,NA
+"968","20","encerar","17","1 True","P6E","sp1","POST",20,"tap"
+"969","20b","encerar","20","1 True","P6E","sp1","POST",21,"tap"
+"970","21","encerrar","69","3","P6E","sp1","POST",22,"trill"
+"971","21b","encerrar","23","1 True","P6E","sp1","POST",23,"tap"
+"972","22","(pena)","NA",NA,"P6E","sp1","POST",24,NA
+"973","23","perito","32","1 True","P6E","sp1","POST",25,"tap"
+"974","24","perrito","57","2","P6E","sp1","POST",26,"trill"
+"975","25","(invita)","NA",NA,"P6E","sp1","POST",27,NA
+"976","26","pero","23","1 True","P6E","sp1","POST",28,"tap"
+"977","27","perro","69","2","P6E","sp1","POST",29,"trill"
+"978","28","(incita)","NA",NA,"P6E","sp1","POST",30,NA
+"979","29","cero","24","1 True","P6E","sp1","POST",31,"tap"
+"980","30","cerro","70","3","P6E","sp1","POST",32,"trill"
+"981","31","(pato)","NA",NA,"P6E","sp1","POST",33,NA
+"982","32","reto","30","1","P6E","sp1","POST",34,"trill"
+"983","33","rifa","82","2","P6E","sp1","POST",35,"trill"
+"984","34","(cometa)","NA",NA,"P6E","sp1","POST",36,NA
+"985","35","risa","106","3","P6E","sp1","POST",37,"trill"
+"986","36","rojo","70","2","P6E","sp1","POST",38,"trill"
+"987","37","(gato)","NA",NA,"P6E","sp1","POST",39,NA
+"988","38","ropa","70","2","P6E","sp1","POST",40,"trill"
+"989","39","borracho","65","2","P6E","sp1","POST",41,"trill"
+"990","40","(hilo)","NA",NA,"P6E","sp1","POST",42,NA
+"991","41","carreta","72","2","P6E","sp1","POST",43,"trill"
+"992","42","perrita","43","1","P6E","sp1","POST",44,"trill"
+"993","43","(cono)","NA",NA,"P6E","sp1","POST",45,NA
+"994","44","jarrita","61","2","P6E","sp1","POST",46,"trill"
+"995","45","barrilete","72","2","P6E","sp1","POST",47,"trill"
+"996","46","(camisa)","NA",NA,"P6E","sp1","POST",48,NA
+"997","47","guitarra","57","2","P6E","sp1","POST",49,"trill"
+"998","48","torre","58","2","P6E","sp1","POST",50,"trill"
+"999","49","(clase)","NA",NA,"P6E","sp1","POST",51,NA
+"1000","50","burro ","74","2","P6E","sp1","POST",52,"trill"
+"1001","51","zorro","52","2","P6E","sp1","POST",53,"trill"
+"1002","52","(cómico)","NA",NA,"P6E","sp1","POST",54,NA
+"1003","53","tierra","84","3","P6E","sp1","POST",55,"trill"
+"1004","54","sonrisa","100","2","P6E","sp1","POST",56,"trill"
+"1005","55","(tiempo)","NA",NA,"P6E","sp1","POST",57,NA
+"1006","56","alrededor","128","3","P6E","sp1","POST",58,"trill"
+"1007","56b","alrededor","20","1 True","P6E","sp1","POST",59,"tap"
+"1008","57","enriquece","91","2","P6E","sp1","POST",60,"trill"
+"1009","58","(mango)","NA",NA,"P6E","sp1","POST",61,NA
+"1010","59","honrado","36","1","P6E","sp1","POST",62,"trill"
+"1011","60","israel","73","2","P6E","sp1","POST",63,"trill"
+"1012","61","(cometa)","NA",NA,"P6E","sp1","POST",64,NA
+"1013","62","cara","15","approximant","P6E","sp1","POST",65,"tap"
+"1014","63","madera","17","1 True","P6E","sp1","POST",66,"tap"
+"1015","64","(música)","NA",NA,"P6E","sp1","POST",67,NA
+"1016","65","cereza","19","approximant","P6E","sp1","POST",68,"tap"
+"1017","66","quiero","16","1 True","P6E","sp1","POST",69,"tap"
+"1018","67","(médico)","NA",NA,"P6E","sp1","POST",70,NA
+"1019","68","pereza","22","1 True","P6E","sp1","POST",71,"tap"
+"1020","69a","parar","18","1 True","P6E","sp1","POST",72,"tap"
+"1021","69b","parar","13","1 True","P6E","sp1","POST",73,"tap"
+"1022","70","(mesa)","NA",NA,"P6E","sp1","POST",74,NA
+"1023","71a","querer","22","1 True","P6E","sp1","POST",75,"tap"
+"1024","71b","querer","20","1 True","P6E","sp1","POST",76,"tap"
+"1025","72a","morir","21","1 True","P6E","sp1","POST",77,"tap"
+"1026","72b","morir","19","1 True","P6E","sp1","POST",78,"tap"
+"1027","73","(amigo)","NA",NA,"P6E","sp1","POST",79,NA
+"1028","74a","mirar","19","1 True","P6E","sp1","POST",80,"tap"
+"1029","74b","mirar","18","1 True","P6E","sp1","POST",81,"tap"
+"1030","75a","tirar","20","1 True","P6E","sp1","POST",82,"tap"
+"1031","75b","tirar","20","1 True","P6E","sp1","POST",83,"tap"
+"1032","76","(cocina)","NA",NA,"P6E","sp1","POST",84,NA
+"1033","77a","morder","34","approximant","P6E","sp1","POST",85,"tap"
+"1034","77b","morder","22","approximant","P6E","sp1","POST",86,"tap"
+"1035","78a","marcar","34","approximant","P6E","sp1","POST",87,"tap"
+"1036","78b","marcar","23","1 True","P6E","sp1","POST",88,"tap"
+"1037","79","(tiza)","NA",NA,"P6E","sp1","POST",89,NA
+"1038","80a","cortar ","18","1 True","P6E","sp1","POST",90,"tap"
+"1039","80b","cortar ","19","1 True","P6E","sp1","POST",91,"tap"
+"1040","81a","hurtar","22","approximant","P6E","sp1","POST",92,"tap"
+"1041","81b","hurtar","21","1 True","P6E","sp1","POST",93,"tap"
+"1042","82","(dieta)","NA",NA,"P6E","sp1","POST",94,NA
+"1043","83a","perder","16","1 True","P6E","sp1","POST",95,"tap"
+"1044","83b","perder","14","approximant","P6E","sp1","POST",96,"tap"
+"1045","84a","torero","28","1 True","P6E","sp1","POST",97,"tap"
+"1046","84b","torero","18","1 True","P6E","sp1","POST",98,"tap"
+"1047","85","(agua)","NA",NA,"P6E","sp1","POST",99,NA
+"1048","86a","perecer","20","1 True","P6E","sp1","POST",100,"tap"
+"1049","86b","perecer","N/A","perceptual","P6E","sp1","POST",101,"tap"
+"1050","87a","colorear","20","1 True","P6E","sp1","POST",102,"tap"
+"1051","87b","colorear","22","1 True","P6E","sp1","POST",103,"tap"
+"1052","88","(café)","NA",NA,"P6E","sp1","POST",104,NA
+"1053","89a","mercurio","15","1 True","P6E","sp1","POST",105,"tap"
+"1054","89b","mercurio","19","1 True","P6E","sp1","POST",106,"tap"
+"1055","90a","arteria","27","approximant","P6E","sp1","POST",107,"tap"
+"1056","90b","arteria","22","1 True","P6E","sp1","POST",108,"tap"
+"1057","91","(dibujo)","NA",NA,"P6E","sp1","POST",109,NA
+"1058","92a","radicar","32","1","P6E","sp1","POST",110,"trill"
+"1059","92b","radicar","16","1 True","P6E","sp1","POST",111,"tap"
+"1060","93a","rifar","53","1","P6E","sp1","POST",112,"trill"
+"1061","93b","rifar","21","1 True","P6E","sp1","POST",113,"tap"
+"1062","94","(venta)","NA",NA,"P6E","sp1","POST",114,NA
+"1063","95a","rodar","84","2","P6E","sp1","POST",115,"trill"
+"1064","95b","rodar","22",NA,"P6E","sp1","POST",116,"tap"
+"1065","96a","romper","72","2","P6E","sp1","POST",117,"trill"
+"1066","96b","romper","34","approximant","P6E","sp1","POST",118,"tap"
+"1067","97","(siete)","NA",NA,"P6E","sp1","POST",119,NA
+"1068","98a","rumor","74","2","P6E","sp1","POST",120,"trill"
+"1069","98b","rumor","27","1 True","P6E","sp1","POST",121,"tap"
+"1070","99a","raro","88","3","P6E","sp1","POST",122,"trill"
+"1071","99b","raro","29","1 True","P6E","sp1","POST",123,"tap"
+"1072","100","(ocho)","NA",NA,"P6E","sp1","POST",124,NA
+"1073","101a","ropero","96","3","P6E","sp1","POST",125,"trill"
+"1074","101b","ropero","24","1 True","P6E","sp1","POST",126,"tap"
+"1075","102a","ratero","59","1","P6E","sp1","POST",127,"trill"
+"1076","102b","ratero","28","1 True","P6E","sp1","POST",128,"tap"
+"1077","103","(mayo)","NA",NA,"P6E","sp1","POST",129,NA
+"1078","104a","carrera ","81","2","P6E","sp1","POST",130,"trill"
+"1079","104b","carrera","24","1 True","P6E","sp1","POST",131,"tap"
+"1080","105a","rapero","54","2","P6E","sp1","POST",132,"trill"
+"1081","105b","rapero","15","1 True","P6E","sp1","POST",133,"tap"
+"1082","106","(semana)","NA",NA,"P6E","sp1","POST",134,NA
+"1083","107a","barrer","91","3","P6E","sp1","POST",135,"trill"
+"1084","107b","barrer","N/A","perceptual","P6E","sp1","POST",136,"tap"
+"1085","108a","correr","86","2","P6E","sp1","POST",137,"trill"
+"1086","108b","correr","25","1 True","P6E","sp1","POST",138,"tap"
+"1087","109","(antes)","NA",NA,"P6E","sp1","POST",139,NA
+"1088","110a","narrar","80","2","P6E","sp1","POST",140,"trill"
+"1089","110b","narrar","22","1 True","P6E","sp1","POST",141,"tap"
+"1090","111a","borrar","78","2","P6E","sp1","POST",142,"trill"
+"1091","111b","borrar","21","1 True","P6E","sp1","POST",143,"tap"
+"1092","112","(estoy)","NA",NA,"P6E","sp1","POST",144,NA
+"1093","113a","cerrar ","88","2","P6E","sp1","POST",145,"trill"
+"1094","113b","cerrar","30","approximant","P6E","sp1","POST",146,"tap"
+"1095","114a","derribar","74","2","P6E","sp1","POST",147,"trill"
+"1096","114b","derribar","31","1 True","P6E","sp1","POST",148,"tap"
+"1097","115","(común)","NA",NA,"P6E","sp1","POST",149,NA
+"1098","116a","corregir","68","2","P6E","sp1","POST",150,"trill"
+"1099","116b","corregir","26","1 True","P6E","sp1","POST",151,"tap"
+"1100","117a","irritar","78","2","P6E","sp1","POST",152,"trill"
+"1101","117b","irritar","25","1 True","P6E","sp1","POST",153,"tap"
+"1102","118","(menos)","NA",NA,"P6E","sp1","POST",154,NA
+"1103","119a","interrogar","93","3","P6E","sp1","POST",155,"trill"
+"1104","119b","interrogar","21","approximant","P6E","sp1","POST",156,"tap"
+"1105","120a","corredor","55","2","P6E","sp1","POST",157,"trill"
+"1106","120b","corredor","18","1 True","P6E","sp1","POST",158,"tap"
+"1107","1","NA","NA",NA,"P6E","sp1","PRE",1,NA
+"1108","2","ahora","49","approximant","P6E","sp1","PRE",2,"tap"
+"1109","3","ahorra","45","1","P6E","sp1","PRE",3,"trill"
+"1110","4","(uno)","NA",NA,"P6E","sp1","PRE",4,NA
+"1111","5","vara","N/A","perceptual","P6E","sp1","PRE",5,"tap"
+"1112","6","barra","45","2","P6E","sp1","PRE",6,"trill"
+"1113","7","(pata)","NA",NA,"P6E","sp1","PRE",7,NA
+"1114","8","coral ","42","approximant","P6E","sp1","PRE",8,"tap"
+"1115","9","corral","87","3","P6E","sp1","PRE",9,"trill"
+"1116","10","(duelo)","NA",NA,"P6E","sp1","PRE",10,NA
+"1117","11","caro","39","approximant","P6E","sp1","PRE",11,"tap"
+"1118","12","carro","69","3","P6E","sp1","PRE",12,"trill"
+"1119","13","(cuna)","NA",NA,"P6E","sp1","PRE",13,NA
+"1120","14","pera","28","1 True","P6E","sp1","PRE",14,"tap"
+"1121","15","perra","75","3","P6E","sp1","PRE",15,"trill"
+"1122","16","(huelo)","NA",NA,"P6E","sp1","PRE",16,NA
+"1123","17","careta","73","2 True","P6E","sp1","PRE",17,"tap"
+"1124","18","carreta","68","2","P6E","sp1","PRE",18,"trill"
+"1125","19","(cena)","NA",NA,"P6E","sp1","PRE",19,NA
+"1126","20","encerar","61","2 True","P6E","sp1","PRE",20,"tap"
+"1127","20b","encerar","31","approximant","P6E","sp1","PRE",21,"tap"
+"1128","21","encerrar","68","3","P6E","sp1","PRE",22,"trill"
+"1129","21b","encerrar","24","approximant","P6E","sp1","PRE",23,"tap"
+"1130","22","(pena)","NA",NA,"P6E","sp1","PRE",24,NA
+"1131","23","perito","43","1 True","P6E","sp1","PRE",25,"tap"
+"1132","24","perrito","73","2","P6E","sp1","PRE",26,"trill"
+"1133","25","(invita)","NA",NA,"P6E","sp1","PRE",27,NA
+"1134","26","pero","28","1 True","P6E","sp1","PRE",28,"tap"
+"1135","27","perro","84","3","P6E","sp1","PRE",29,"trill"
+"1136","28","(incita)","NA",NA,"P6E","sp1","PRE",30,NA
+"1137","29","cero","28","approximant","P6E","sp1","PRE",31,"tap"
+"1138","30","cerro","69","3","P6E","sp1","PRE",32,"trill"
+"1139","31","(pato)","NA",NA,"P6E","sp1","PRE",33,NA
+"1140","32","reto","34","1","P6E","sp1","PRE",34,"trill"
+"1141","33","rifa","43","1","P6E","sp1","PRE",35,"trill"
+"1142","34","(cometa)","NA",NA,"P6E","sp1","PRE",36,NA
+"1143","35","risa","38","1","P6E","sp1","PRE",37,"trill"
+"1144","36","rojo","30","1","P6E","sp1","PRE",38,"trill"
+"1145","37","(gato)","NA",NA,"P6E","sp1","PRE",39,NA
+"1146","38","ropa","42","1","P6E","sp1","PRE",40,"trill"
+"1147","39","borracho","65","3","P6E","sp1","PRE",41,"trill"
+"1148","40","(hilo)","NA",NA,"P6E","sp1","PRE",42,NA
+"1149","41","carreta","78","2","P6E","sp1","PRE",43,"trill"
+"1150","42","perrita","N/A","0","P6E","sp1","PRE",44,"trill"
+"1151","43","(cono)","NA",NA,"P6E","sp1","PRE",45,NA
+"1152","44","jarrita","70","3","P6E","sp1","PRE",46,"trill"
+"1153","45","barrilete","67","2","P6E","sp1","PRE",47,"trill"
+"1154","46","(camisa)","NA",NA,"P6E","sp1","PRE",48,NA
+"1155","47","guitarra","62","3","P6E","sp1","PRE",49,"trill"
+"1156","48","torre","40","1","P6E","sp1","PRE",50,"trill"
+"1157","49","(clase)","NA",NA,"P6E","sp1","PRE",51,NA
+"1158","50","burro ","78","3","P6E","sp1","PRE",52,"trill"
+"1159","51","zorro","62","2","P6E","sp1","PRE",53,"trill"
+"1160","52","(cómico)","NA",NA,"P6E","sp1","PRE",54,NA
+"1161","53","tierra","78","2","P6E","sp1","PRE",55,"trill"
+"1162","54","sonrisa","59","2","P6E","sp1","PRE",56,"trill"
+"1163","55","(tiempo)","NA",NA,"P6E","sp1","PRE",57,NA
+"1164","56","alrededor","32","0","P6E","sp1","PRE",58,"trill"
+"1165","56b","alrededor","27","approximant","P6E","sp1","PRE",59,"tap"
+"1166","57","enriquece","39","1","P6E","sp1","PRE",60,"trill"
+"1167","58","(mango)","NA",NA,"P6E","sp1","PRE",61,NA
+"1168","59","honrado","36","0","P6E","sp1","PRE",62,"trill"
+"1169","60","israel","24","0","P6E","sp1","PRE",63,"trill"
+"1170","61","(cometa)","NA",NA,"P6E","sp1","PRE",64,NA
+"1171","62","cara","33","1 True","P6E","sp1","PRE",65,"tap"
+"1172","63","madera","21","1 True","P6E","sp1","PRE",66,"tap"
+"1173","64","(música)","NA",NA,"P6E","sp1","PRE",67,NA
+"1174","65","cereza","40","1 True","P6E","sp1","PRE",68,"tap"
+"1175","66","quiero","30","1 True","P6E","sp1","PRE",69,"tap"
+"1176","67","(médico)","NA",NA,"P6E","sp1","PRE",70,NA
+"1177","68","pereza","29","1 True","P6E","sp1","PRE",71,"tap"
+"1178","69a","parar","20","approximant","P6E","sp1","PRE",72,"tap"
+"1179","69b","parar","27","approximant","P6E","sp1","PRE",73,"tap"
+"1180","70","(mesa)","NA",NA,"P6E","sp1","PRE",74,NA
+"1181","71a","querer","40","1 True","P6E","sp1","PRE",75,"tap"
+"1182","71b","querer","43","1 True","P6E","sp1","PRE",76,"tap"
+"1183","72a","morir","27","1 True","P6E","sp1","PRE",77,"tap"
+"1184","72b","morir","34","approximant","P6E","sp1","PRE",78,"tap"
+"1185","73","(amigo)","NA",NA,"P6E","sp1","PRE",79,NA
+"1186","74a","mirar","26","approximant","P6E","sp1","PRE",80,"tap"
+"1187","74b","mirar","39","approximant","P6E","sp1","PRE",81,"tap"
+"1188","75a","tirar","24","1 True","P6E","sp1","PRE",82,"tap"
+"1189","75b","tirar","22","1 True","P6E","sp1","PRE",83,"tap"
+"1190","76","(cocina)","NA",NA,"P6E","sp1","PRE",84,NA
+"1191","77a","morder","32","approximant","P6E","sp1","PRE",85,"tap"
+"1192","77b","morder","32","approximant","P6E","sp1","PRE",86,"tap"
+"1193","78a","marcar","34","approximant","P6E","sp1","PRE",87,"tap"
+"1194","78b","marcar","31","approximant","P6E","sp1","PRE",88,"tap"
+"1195","79","(tiza)","NA",NA,"P6E","sp1","PRE",89,NA
+"1196","80a","cortar ","32","approximant","P6E","sp1","PRE",90,"tap"
+"1197","80b","cortar ","39","approximant","P6E","sp1","PRE",91,"tap"
+"1198","81a","hurtar","26","1 True","P6E","sp1","PRE",92,"tap"
+"1199","81b","hurtar","21","1 True","P6E","sp1","PRE",93,"tap"
+"1200","82","(dieta)","NA",NA,"P6E","sp1","PRE",94,NA
+"1201","83a","perder","41","approximant","P6E","sp1","PRE",95,"tap"
+"1202","83b","perder","43","approximant","P6E","sp1","PRE",96,"tap"
+"1203","84a","torero","44","1 True","P6E","sp1","PRE",97,"tap"
+"1204","84b","torero","30","1 True","P6E","sp1","PRE",98,"tap"
+"1205","85","(agua)","NA",NA,"P6E","sp1","PRE",99,NA
+"1206","86a","perecer","28","approximant","P6E","sp1","PRE",100,"tap"
+"1207","86b","perecer","24","approximant","P6E","sp1","PRE",101,"tap"
+"1208","87a","colorear","84","approximant","P6E","sp1","PRE",102,"tap"
+"1209","87b","colorear","30","approximant","P6E","sp1","PRE",103,"tap"
+"1210","88","(café)","NA",NA,"P6E","sp1","PRE",104,NA
+"1211","89a","mercurio","38","approximant","P6E","sp1","PRE",105,"tap"
+"1212","89b","mercurio","50","approximant","P6E","sp1","PRE",106,"tap"
+"1213","90a","arteria","57","approximant","P6E","sp1","PRE",107,"tap"
+"1214","90b","arteria","58","approximant","P6E","sp1","PRE",108,"tap"
+"1215","91","(dibujo)","NA",NA,"P6E","sp1","PRE",109,NA
+"1216","92a","radicar","47","1","P6E","sp1","PRE",110,"trill"
+"1217","92b","radicar","N/A","N/A","P6E","sp1","PRE",111,"tap"
+"1218","93a","rifar","82","3","P6E","sp1","PRE",112,"trill"
+"1219","93b","rifar","20","1 True","P6E","sp1","PRE",113,"tap"
+"1220","94","(venta)","NA",NA,"P6E","sp1","PRE",114,NA
+"1221","95a","rodar","43","1","P6E","sp1","PRE",115,"trill"
+"1222","95b","rodar","34","approximant","P6E","sp1","PRE",116,"tap"
+"1223","96a","romper","69","2","P6E","sp1","PRE",117,"trill"
+"1224","96b","romper","29","approximant","P6E","sp1","PRE",118,"tap"
+"1225","97","(siete)","NA",NA,"P6E","sp1","PRE",119,NA
+"1226","98a","rumor","40","1","P6E","sp1","PRE",120,"trill"
+"1227","98b","rumor","N/A","perceptual","P6E","sp1","PRE",121,"tap"
+"1228","99a","raro","52","1","P6E","sp1","PRE",122,"trill"
+"1229","99b","raro","48","approximant","P6E","sp1","PRE",123,"tap"
+"1230","100","(ocho)","NA",NA,"P6E","sp1","PRE",124,NA
+"1231","101a","ropero","35","1","P6E","sp1","PRE",125,"trill"
+"1232","101b","ropero","25","1 True","P6E","sp1","PRE",126,"tap"
+"1233","102a","ratero","45","1","P6E","sp1","PRE",127,"trill"
+"1234","102b","ratero","34","1 True","P6E","sp1","PRE",128,"tap"
+"1235","103","(mayo)","NA",NA,"P6E","sp1","PRE",129,NA
+"1236","104a","carrera ","32","1","P6E","sp1","PRE",130,"trill"
+"1237","104b","carrera","75","2 True","P6E","sp1","PRE",131,"tap"
+"1238","105a","rapero","66","2","P6E","sp1","PRE",132,"trill"
+"1239","105b","rapero","37","1 True","P6E","sp1","PRE",133,"tap"
+"1240","106","(semana)","NA",NA,"P6E","sp1","PRE",134,NA
+"1241","107a","barrer","39","1","P6E","sp1","PRE",135,"trill"
+"1242","107b","barrer","28","1 True","P6E","sp1","PRE",136,"tap"
+"1243","108a","correr","42","1","P6E","sp1","PRE",137,"trill"
+"1244","108b","correr","31","approximant","P6E","sp1","PRE",138,"tap"
+"1245","109","(antes)","NA",NA,"P6E","sp1","PRE",139,NA
+"1246","110a","narrar","104","3","P6E","sp1","PRE",140,"trill"
+"1247","110b","narrar","31","approximant","P6E","sp1","PRE",141,"tap"
+"1248","111a","borrar","25","1","P6E","sp1","PRE",142,"trill"
+"1249","111b","borrar","20","approximant","P6E","sp1","PRE",143,"tap"
+"1250","112","(estoy)","NA",NA,"P6E","sp1","PRE",144,NA
+"1251","113a","cerrar ","69","2","P6E","sp1","PRE",145,"trill"
+"1252","113b","cerrar","24","approximant","P6E","sp1","PRE",146,"tap"
+"1253","114a","derribar","70","2","P6E","sp1","PRE",147,"trill"
+"1254","114b","derribar","23","approximant","P6E","sp1","PRE",148,"tap"
+"1255","115","(común)","NA",NA,"P6E","sp1","PRE",149,NA
+"1256","116a","corregir","76","2","P6E","sp1","PRE",150,"trill"
+"1257","116b","corregir","33","approximant","P6E","sp1","PRE",151,"tap"
+"1258","117a","irritar","64",NA,"P6E","sp1","PRE",152,"trill"
+"1259","117b","irritar","32","approximant","P6E","sp1","PRE",153,"tap"
+"1260","118","(menos)","NA",NA,"P6E","sp1","PRE",154,NA
+"1261","119a","interrogar","69","3","P6E","sp1","PRE",155,"trill"
+"1262","119b","interrogar","43","approximant","P6E","sp1","PRE",156,"tap"
+"1263","120a","corredor","44","1","P6E","sp1","PRE",157,"trill"
+"1264","120b","corredor","23","1 True","P6E","sp1","PRE",158,"tap"

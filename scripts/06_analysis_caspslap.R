@@ -24,11 +24,17 @@ p5_tap_srt = run_t_test(df = srt, p_id = "P5E", segment = "tap") %>%
 p5_trill_srt = run_t_test(df = srt, p_id = "P5E", segment = "trill") %>% 
   mutate(task = "srt")
 
+p6_tap_srt = run_t_test(df = srt, p_id = "P6E", segment = "tap") %>% 
+  mutate(task = "srt")
+p6_trill_srt = run_t_test(df = srt, p_id = "P6E", segment = "trill") %>% 
+  mutate(task = "srt")
+
 # combine output into df for visualizations and reporting
 
 srt_t_df <- rbind(p1_tap_srt, p1_trill_srt, 
       p3_tap_srt, p3_trill_srt, 
-      p5_tap_srt, p5_trill_srt)
+      p5_tap_srt, p5_trill_srt,
+      p6_tap_srt, p6_trill_srt)
 
 srt_t_df %>% 
   write.csv(here("data", "tidy", "srt_t_tests.csv"))

@@ -7,7 +7,7 @@
 library(here)
 library(tidyverse)
 library(janitor)
-library(fs)
+library(fs) 
 
 list_of_files <- list.files(path = here("data", "raw"), recursive = TRUE,
                             pattern = "\\.csv$", 

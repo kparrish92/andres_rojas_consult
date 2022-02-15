@@ -43,7 +43,7 @@ tap_df <- srt %>%
   filter(is_trill == "tap") %>% 
   summarize(mean = mean(as.numeric(duration))) %>% 
   pivot_wider(names_from = participant, values_from = mean) %>% 
-  dplyr::select(time, P1E, P3E, P5E) %>% 
+  dplyr::select(time, P1E, P3E, P5E, P6E) %>% 
   arrange(desc(time)) 
 
 tap_df$is_trill <- NULL
@@ -63,7 +63,7 @@ trill_df <- srt %>%
   filter(is_trill == "trill") %>% 
   summarize(mean = mean(as.numeric(duration))) %>% 
   pivot_wider(names_from = participant, values_from = mean) %>%
-  dplyr::select(time, P1E, P3E, P5E) %>% 
+  dplyr::select(time, P1E, P3E, P5E, P6E) %>% 
   arrange(desc(time))
 
 trill_df$is_trill <- NULL
@@ -135,7 +135,8 @@ Here are a few boxplots by participant.
 These plots show the distribution of responses per participant in both taps (Figure 1) and trills (Figure 2) between the pre and post tests. 
 
 **Figure 1: Productions of taps per participant during the pre and post test**
-```{r, dpi = 300}
+
+```{r}
 
 level_order <- c('PRE', 'POST')
 
@@ -146,13 +147,14 @@ srt %>%
   facet_wrap(~participant) + xlab("Test Time") + ylab("Rhotic Duration (ms)") +
   theme_bw() +
   theme(panel.background = element_rect(fill = "grey79"),
-        legend.position = "bottom") + theme(legend.position = "none")  + ggtitle("Taps")
+        legend.position = "bottom") + theme(legend.position = "none")  + ggtitle("Taps") + ggsave(here("docs", "figs", "figure1.png"))
 ```
 
 
 
 **Figure 2: Productions of trills per participant during the pre and post test**
-```{r, dpi = 300}
+
+```{r}
 
 
 level_order <- c('PRE', 'POST')
@@ -164,7 +166,7 @@ srt %>%
   facet_wrap(~participant) + xlab("Test Time") + ylab("Rhotic Duration (ms)") +
   theme_bw() +
   theme(panel.background = element_rect(fill = "grey79"),
-        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Trills")
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Trills") + ggsave(here("docs", "figs", "figure2.png"))
 ```
 
 ### Conclusions 
