@@ -1,6 +1,6 @@
 ---
 title: "Sentence Reading Task Results"
-output: html_document
+output: pdf_document
 ---
 ##  Andrés-Rojas (2022)
 ```{r setup, include=FALSE}
