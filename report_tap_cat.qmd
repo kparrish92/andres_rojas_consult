@@ -1,7 +1,6 @@
 ---
 title: "Categorical Taps"
-format: html
-editor: visual
+format: docx
 ---
 
 ```{r, include = FALSE}
