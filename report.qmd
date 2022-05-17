@@ -1,0 +1,639 @@
+---
+title: "Reports"
+format: html
+editor: visual
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(here)
+library(ggpmisc)
+library(sjPlot)
+library(sjlabelled)
+library(sjmisc)
+library(lme4)
+library(lmerTest)
+
+source(here::here("scripts", "00_helpers.R"))
+source(here::here("scripts", "05_load_data.R"))
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# Statistical Analysis
+
+Six total linear mixed effects models are reported here. For each of three tasks (the Sentence Reading Task, the Lectura task, and the Picture Naming Task) two models were run, where one was for taps and the other was for trills. In each model, the outcome/dependent variable was duration in milliseconds. Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. To examine individual differences, a random slope by participant was included to determine how test time impacted each participant individually. These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
+
+# Sentence Reading Task
+
+## Group Analysis
+
+Table 1 shows the mean and standard deviation of taps by each class level at PRE and POST tests, and table 2 shows the same information for trills. Figure 1 shows a boxplot of the raw data for taps, while Figure 2 shows a boxplot for trills.
+
+**Table 1**
+
+```{r table_1}
+srt %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each level at PRE and POST tests") 
+```
+
+**Table 2**
+
+```{r table_2}
+srt %>% 
+  filter(is_trill == "trill") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of trills by each level at PRE and POST tests")
+```
+
+**Figure 1**
+
+```{r figure_1}
+
+level_order <- c('POST', 'PRE')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("SRT: Duration of Taps by each group")
+
+```
+
+**Figure 2**
+
+```{r figure_2}
+
+level_order <- c('POST', 'PRE')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 150) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("SRT: Duration of Trills by each group")
+```
+
+An inspection of Tables 1 and 2 together with Figures 1 and 2 suggest that, overall, trills exhibited longer duration at post-test, while taps were associated with shorter duration.
+
+Table 3 represent a table of nested model comparisons using the `anova` function in R that was carried out to assess main effects and interactions.\
+Table 4 shows the results of the linear mixed effects model.
+
+**Table 3: Nested Model Comparisons for tap models in the SRT**
+
+```{r table_3}
+nmc_srt_tap %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+```
+
+**Table 4: Nested Model Comparisons for trill models in the SRT**
+
+```{r table_4}
+nmc_srt_trill %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>%
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>%
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+**Table 5: Sentence Reading Task Taps Model Table**
+
+```{r table_5}
+tab_model(srt_tap_mod)
+```
+
+**Table 6 Sentence Reading Task Trills Model Table**
+
+```{r table_6}
+tab_model(srt_trill_mod)
+```
+
+Figure 3 is a visualization of Table 4. It shows each estimate surrounded by its 95% confidence interval.
+
+**Figure 3: Sentence Reading Task Taps Model Visualization**
+
+```{r figure_3}
+plot_model(srt_tap_mod) + theme(text=element_text(size=10, family="Times"))
+```
+
+**Figure 4 Sentence Reading Task Trills Model Visualization**
+
+```{r figure_4}
+plot_model(srt_trill_mod) + theme(text=element_text(size=10, family="Times"))
+```
+
+## Individual Analysis
+
+**Table 7: SRT - mean tap duration of each participant in pre and post tests**
+
+```{r table_7}
+srt %>% 
+  filter(!is.na(duration)) %>% 
+  filter(!duration == "N/A /d/") %>% 
+  filter(!duration == "N/A") %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, participant, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
+```
+
+**Table 8: SRT - mean trill duration of each participant in pre and post tests**
+
+```{r table_8}
+srt %>% 
+  filter(!is.na(duration)) %>% 
+  filter(!duration == "N/A /d/") %>% 
+  filter(!duration == "N/A") %>% 
+  filter(is_trill == "trill") %>% 
+  group_by(level, participant, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
+```
+
+**Figure 5: SRT - boxplots of the duration of taps per participant at pre and post-test**
+
+```{r figure_5}
+level_order <- c('POST', 'PRE')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant, ncol = 3) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Taps by each participant in the Sentence Reading Task")
+```
+
+**Figure 6: SRT - boxplots of the duration of trills per participant at pre and post-test**
+
+```{r figure_6}
+level_order <- c('POST', 'PRE')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant, ncol = 3) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Trills by each participant in the Sentence Reading Task")
+```
+
+**Figure 7: Random Effects plot Taps**
+
+```{r figure_7}
+plot_re(model = srt_tap_mod, effect = "timePOST", task = "Sentence Reading Task", taps = "Taps", continuous = "Continuous")
+```
+
+**Figure 8: Random Effects plot Trills**
+
+```{r figure_8}
+plot_re(model = srt_trill_mod, effect = "timePOST", task = "Sentence Reading Task", taps = "Trills", continuous = "Continuous")
+```
+
+# Lectura
+
+## Group Analysis
+
+Table 1 shows the mean and standard deviation of taps by each class level at PRE and POST tests, and table 2 shows the same information for trills. Figure 1 shows a boxplot of the raw data for taps, while Figure 2 shows a boxplot for trills.
+
+**Table 9**
+
+```{r table_9}
+lectura %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each level at PRE and POST tests")
+```
+
+**Table 10**
+
+```{r table_10}
+lectura %>% 
+  filter(is_trill == "trill") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of trills by each level at PRE and POST tests")
+```
+
+**Figure 9**
+
+```{r figure_9}
+
+level_order <- c('POST', 'PRE')
+
+lectura %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("lectura: Duration of Taps by each group")
+
+```
+
+**Figure 10**
+
+```{r figure_10}
+
+level_order <- c('POST', 'PRE')
+
+lectura %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 150) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("lectura: Duration of Trills by each group")
+```
+
+**Table 11: Nested Model Comparisons for tap models in the lectura**
+
+```{r table_11}
+nmc_lectura_tap %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>%
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>%
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+```
+
+**Table 12: Nested Model Comparisons for trill models in the lectura**
+
+```{r table_12}
+nmc_lectura_trill %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>%
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>%
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+**Table 13: lectura Taps Model Table**
+
+```{r table_13}
+tab_model(lectura_tap_mod)
+```
+
+**Table 14 lectura Trills Model Table**
+
+```{r table_14}
+tab_model(lectura_trill_mod)
+```
+
+**Figure 11: lectura Taps Model Visualization**
+
+```{r figure_11}
+plot_model(lectura_tap_mod) + theme(text=element_text(size=10, family="Times"))
+```
+
+**Figure 12: lectura Trills Model Visualization**
+
+```{r figure_12}
+plot_model(lectura_trill_mod) + theme(text=element_text(size=10, family="Times"))
+```
+
+## Individual Analysis
+
+**Table 15: lectura - mean tap duration of each participant in pre and post tests**
+
+```{r table_15}
+lectura %>% 
+  filter(!is.na(duration)) %>% 
+  filter(!duration == "N/A /d/") %>% 
+  filter(!duration == "N/A") %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, participant, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
+```
+
+**Table 16: lectura - mean trill duration of each participant in pre and post tests**
+
+```{r table_16}
+lectura %>% 
+  filter(!is.na(duration)) %>% 
+  filter(!duration == "N/A /d/") %>% 
+  filter(!duration == "N/A") %>% 
+  filter(is_trill == "trill") %>% 
+  group_by(level, participant, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
+```
+
+**Figure 13: lectura - boxplots of the duration of taps per participant at pre and post-test**
+
+```{r figure_13}
+level_order <- c('POST', 'PRE')
+
+lectura %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant, ncol = 3) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Taps by each participant in the lectura")
+```
+
+**Figure 14: lectura - boxplots of the duration of trills per participant at pre and post-test**
+
+```{r figure_14}
+level_order <- c('POST', 'PRE')
+
+lectura %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant, ncol = 3) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Trills by each participant in the lectura")
+```
+
+**Figure 15: Random Effects plot Taps**
+
+```{r figure_15}
+plot_re(model = lectura_tap_mod, effect = "timePOST", task = "lectura", taps = "Taps", continuous = "Continuous")
+```
+
+**Figure 16: Random Effects plot Trills**
+
+```{r figure_16}
+plot_re(model = lectura_trill_mod, effect = "timePOST", task = "lectura", taps = "Trills", continuous = "Continuous")
+```
+
+# Picture Naming Task
+
+## Group Analysis
+
+**Table 17**
+
+```{r table_17}
+image_df %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each level at PRE and POST tests")
+```
+
+**Table 18**
+
+```{r table_18}
+image_df %>% 
+  filter(is_trill == "trill") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of trills by each level at PRE and POST tests")
+```
+
+**Figure 17**
+
+```{r figure_17}
+
+level_order <- c('POST', 'PRE')
+
+image_df %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("image_df: Duration of Taps by each group")
+
+```
+
+**Figure 18**
+
+```{r figure_18}
+
+level_order <- c('POST', 'PRE')
+
+image_df %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 150) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("image_df: Duration of Trills by each group")
+```
+
+An inspection of Tables 1 and 2 together with Figures 1 and 2 suggest that, overall, trills exhibited longer duration at post-test, while taps were associated with shorter duration.
+
+Table 3 represent a table of nested model comparisons using the `anova` function in R that was carried out to assess main effects and interactions.\
+Table 4 shows the results of the linear mixed effects model.
+
+**Table 19: Nested Model Comparisons for tap models in the Picture Naming Task**
+
+```{r table_19}
+nmc_image_df_tap %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>%
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>%
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+```
+
+**Table 20: Nested Model Comparisons for trill models in the Picture Naming Task**
+
+```{r table_20}
+nmc_image_df_trill %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>%
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>%
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+**Table 21: Picture Naming Task Taps Model Table**
+
+```{r table_21}
+tab_model(image_df_tap_mod)
+```
+
+**Table 22: Picture Naming Task Trills Model Table**
+
+```{r table_22}
+tab_model(image_df_trill_mod)
+```
+
+Figure 3 is a visualization of Table 4. It shows each estimate surrounded by its 95% confidence interval.
+
+**Figure 19: Picture Naming Task Taps Model Visualization**
+
+```{r figure_19}
+plot_model(image_df_tap_mod) + theme(text=element_text(size=10, family="Times"))
+```
+
+**Figure 20: Picture Naming Task Trills Model Visualization**
+
+```{r figure_20}
+plot_model(image_df_trill_mod) + theme(text=element_text(size=10, family="Times")) +
+  scale_color_manual(values=c("#377eb8"))
+```
+
+## Individual Analysis
+
+**Table 23: Picture Naming Task - mean tap duration of each participant in pre and post tests**
+
+```{r table_23}
+image_df %>% 
+  filter(!is.na(duration)) %>% 
+  filter(!duration == "N/A /d/") %>% 
+  filter(!duration == "N/A") %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, participant, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>%
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
+```
+
+**Table 24: Picture Naming Task - mean trill duration of each participant in pre and post tests**
+
+```{r table_24}
+image_df$duration = as.numeric(image_df$duration)
+
+image_df %>% 
+  filter(is_trill == "trill") %>% 
+  group_by(level, participant, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>%
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
+```
+
+**Figure 21: Picture Naming Task - boxplots of the duration of taps per participant at pre and post-test**
+
+```{r figure_21}
+level_order <- c('POST', 'PRE')
+
+image_df$duration = as.numeric(image_df$duration)
+
+image_df %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant, ncol = 3) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 150) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Taps by each participant in the image_df")
+```
+
+**Figure 22: Picture Naming Task - boxplots of the duration of trills per participant at pre and post-test**
+
+```{r figure_22}
+level_order <- c('POST', 'PRE')
+
+image_df$duration = as.numeric(image_df$duration)
+
+
+image_df %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant, ncol = 3) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 150) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Trills by each participant in the image_df")
+```
+
+**Figure 23: Random Effects plot Taps**
+
+```{r figure_23}
+plot_re(model = image_df_tap_mod, effect = "timePOST", task = "Picture Naming Task", taps = "Taps", continuous = "Continuous")
+```
+
+**Figure 24: Random Effects plot Trills**
+
+```{r, figure_24}
+plot_re(model = image_df_trill_mod, effect = "timePOST", task = "Picture Naming Task", taps = "Trills", continuous = "Continuous") + scale_fill_manual(values=c("#0dbaff")) + xlim(-20, 150)
+```

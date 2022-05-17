@@ -1,0 +1,292 @@
+---
+title: "report trills occlusions"
+format: html
+editor: visual
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(here)
+library(ggpmisc)
+library(sjPlot)
+library(sjlabelled)
+library(sjmisc)
+library(lme4)
+library(lmerTest)
+library(ggpubr)
+
+source(here::here("scripts", "00_helpers.R"))
+source(here::here("scripts", "05_load_data.R"))
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Sentence Reading Task
+
+**Table 1**
+
+```{r table_1}
+srt_tidy_trill = srt %>% 
+  filter(is_trill == "trill") %>% 
+  filter(no_occlusions == 0 | no_occlusions == 1 | 
+           no_occlusions == 2 | no_occlusions == 3 | 
+           no_occlusions == 4)
+
+srt_tidy_trill %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable()
+
+```
+
+Figure 1 shows the number of occurrences of each number of trills in each group at pre and post test.
+
+**Figure 1**
+
+```{r figure_1}
+
+level_order <- c('PRE', 'POST')
+
+srt_tidy_trill %>%
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+```
+
+**Figure 2**
+
+```{r figure_2}
+plot_model(srt_trill_cat, title = "Number of Occlusions") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table 2**
+
+```{r}
+tab_model(srt_trill_cat, dv.labels = "Number of Occlusions")
+```
+
+**Table 3**
+
+```{r}
+nmc_trill_cont %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+**Table 4**
+
+```{r}
+srt_tidy_trill %>% 
+  group_by(level, time, participant) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable()
+
+```
+
+**Figure 3**
+
+```{r figure_3}
+plot_re(model = srt_trill_cat, effect = "timePOST", task = "Sentence Reading Task", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
+```
+
+## Lectura
+
+**Table 5**
+
+```{r}
+
+lectura %>%
+  filter(is_trill == "trill") %>%
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable()
+
+```
+
+**Figure 4**
+
+```{r figure_4}
+
+level_order <- c('PRE', 'POST')
+
+lectura %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+```
+
+**Figure 5**
+
+```{r figure_5}
+plot_model(lectura_trill_cat, title = "Number of Occlusions") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table 6**
+
+```{r}
+tab_model(lectura_trill_cat, dv.labels = "Number of Occlusions")
+```
+
+**Table 7**
+
+```{r}
+nmc_trill_cont_lec %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+**Table 8**
+
+```{r}
+lectura %>%
+  filter(is_trill == "trill") %>%
+  group_by(level, time, participant) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable()
+
+```
+
+**Figure 6**
+
+```{r figure_6}
+plot_re(model = lectura_trill_cat, effect = "timePOST", task = "Lectura", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
+```
+
+## Picture Naming Task
+
+**Table 9**
+
+```{r}
+
+image_df_trill = image_df %>% 
+  filter(is_trill == "trill") %>% 
+  filter(!is.na(no_occlusions))
+
+image_df_trill %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable()
+
+```
+
+**Figure 7**
+
+```{r figure_7}
+
+level_order <- c('PRE', 'POST')
+
+image_df_trill %>%  
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+```
+
+**Figure 8**
+
+```{r figure_8}
+plot_model(pct_trill_cat, title = "Number of Occlusions") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table 10**
+
+```{r}
+tab_model(pct_trill_cat, dv.labels = "Number of Occlusions")
+```
+
+**Table 11**
+
+```{r}
+nmc_trill_cont_pct %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+**Table 12**
+
+```{r}
+image_df_trill %>% 
+  filter(is_trill == "trill") %>%
+  group_by(level, time, participant) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, participant, PRE, POST) %>% 
+  knitr::kable()
+
+```
+
+**Figure 9**
+
+```{r figure_9}
+plot_re(model = pct_trill_cat, effect = "timePOST", task = "Picture Naming Task", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
+```

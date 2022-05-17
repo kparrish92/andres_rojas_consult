@@ -21,7 +21,7 @@ for(thisRun in 1:nrow(list_of_files))
     row_to_names(row_number = 1) %>% 
     clean_names() %>% 
     select(c(1:6)) %>% 
-    slice(169:228) %>% 
+    dplyr::slice(169:228) %>% 
     mutate("id" = list_of_files$.[thisRun]) 
   colnames(df) <- c('sentence','token1','token2', 'duration1','duration2',
                     'occlusions', 'id')
@@ -53,7 +53,20 @@ lectura_tidy <- df_f %>%
   mutate(id = str_remove(id, ".csv")) %>% 
   separate(id, into = c("participant", "level", "time")) %>% 
   filter(!is.na(sentence)) %>% 
-  filter(sentence != "Paragraph 2")
+  filter(sentence != "Paragraph 2") %>% 
+  filter(duration != "Duration Tap_Duration  Trill") %>% 
+  filter(duration != "Duration Taps_Duration Trills") %>%
+  filter(duration != "N/!")
+
+lectura_tidy = lectura_tidy %>% 
+  mutate(no_occlusions = substr(occlusions, 1, 1)) 
+
+lectura_tidy = lectura_tidy %>% 
+  mutate("level_2" = level) %>% 
+  unite("participant", level, participant, sep = "_") %>% 
+  rename(level = level_2) %>% 
+  mutate(level = replace(level, level == "sp203" | level == "sp204", "sp203/204")) 
+
 
 lectura_tidy %>% 
   write.csv(here("data", "tidy", "lectura_tidy.csv"))

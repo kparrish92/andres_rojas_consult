@@ -1,0 +1,242 @@
+---
+title: "Categorical Taps"
+format: html
+editor: visual
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(here)
+library(ggpmisc)
+library(sjPlot)
+library(sjlabelled)
+library(sjmisc)
+library(lme4)
+library(lmerTest)
+library(ggpubr)
+
+source(here::here("scripts", "00_helpers.R"))
+source(here::here("scripts", "05_load_data.R"))
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Sentence Reading Task
+
+**Table 1**
+
+```{r}
+srt_tidy_tap = srt %>% 
+  filter(is_trill == "tap") %>% 
+  filter(no_occlusions == "a" | no_occlusions == 1)
+
+srt_tidy_tap %>% 
+  group_by(level, time, no_occlusions) %>% 
+  summarize(mean_duration = n()) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, no_occlusions, PRE, POST) %>% 
+  knitr::kable()
+```
+
+**Figure 1**
+
+```{r}
+
+level_order <- c('PRE', 'POST')
+
+srt_tidy_tap %>%
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+```
+
+**Figure 2**
+
+```{r}
+plot_model(srt_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table 2**
+
+```{r}
+tab_model(srt_tap_cat, dv.labels = "Probability of approximate realization")
+```
+
+**Table 3**
+
+```{r}
+nmc_tap_cont %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+```{r}
+plot_re(model = srt_tap_cat, effect = "timePOST", task = "Sentence Reading Task", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
+```
+
+
+## Lectura
+
+**Table**
+
+```{r}
+lectura_tidy_tap = lectura %>% 
+  filter(is_trill == "tap") %>% 
+  filter(no_occlusions == "a" | no_occlusions == 1)
+
+lectura_tidy_tap %>% 
+  group_by(level, time, no_occlusions) %>% 
+  summarize(mean_duration = n()) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, no_occlusions, PRE, POST) %>% 
+  knitr::kable()
+```
+
+**Figure**
+
+```{r}
+
+level_order <- c('PRE', 'POST')
+
+lectura_tidy_tap %>%
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+```
+
+**Figure**
+
+```{r}
+plot_model(lectura_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table**
+
+```{r}
+tab_model(lectura_tap_cat, dv.labels = "Probability of approximate realization")
+```
+
+**Table 3**
+
+```{r}
+nmc_tap_cont_lectura %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+```{r}
+plot_re(model = lectura_tap_cat, effect = "timePOST", task = "Lectura", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
+```
+
+## Picture Naming Task
+
+**Table 1**
+
+```{r}
+pct_tidy_tap = image_df %>% 
+  filter(is_trill == "tap") %>% 
+  filter(no_occlusions == "a" | no_occlusions == 1)
+
+pct_tidy_tap %>% 
+  group_by(level, time, no_occlusions) %>% 
+  summarize(mean_duration = n()) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, no_occlusions, PRE, POST) %>% 
+  knitr::kable()
+```
+
+**Figure 1**
+
+```{r}
+
+level_order <- c('PRE', 'POST')
+
+pct_tidy_tap %>%
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+```
+
+**Figure 2**
+
+```{r figure_2}
+plot_model(pct_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table 2**
+
+```{r}
+tab_model(pct_tap_cat, dv.labels = "Probability of approximate realization")
+```
+
+**Table 3**
+
+```{r}
+nmc_tap_cont_pct %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+
+```
+
+```{r}
+plot_re(model = pct_tap_cat, effect = "timePOST", task = "Picture Naming Task", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
+```

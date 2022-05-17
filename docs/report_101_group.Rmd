@@ -1,0 +1,99 @@
+---
+title: "Group analysis"
+output: pdf_document
+---
+
+This document is a group analysis of the impact of training on the duration of taps and trills in Spanish 1 students (6 total).
+The data is analyzed using linear mixed effects models in which the outcome variable was rhotic duration.
+The fixed effect predictor was the factor *time* (pre and post test) and the models also included a random intercept per participant to take into account the nested structure of the data.
+Nested model comparisons were carried out to assess main effects and interactions.
+Normality of residuals were assessed by a visual inspection of Q-Q plots in each model.
+All analyses were run in R. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+library(here)
+library(tidyverse)
+library(janitor)
+library(fs)
+library(lme4)
+library(lmerTest)
+```
+
+```{r, include=FALSE}
+# load tidy data 
+source(here("scripts", "00_helpers.R"))
+source(here("scripts", "05_load_data.R"))
+```
+
+```{r, include=FALSE}
+# filter data to get only taps for Spanish 1 students 
+srt_101_tap = srt %>% 
+  filter(level == "sp1") %>% 
+  filter(is_trill == "tap") %>% 
+  filter(!is.na(duration))
+
+srt_101_trill = srt %>% 
+  filter(level == "sp1") %>% 
+  filter(is_trill == "trill") %>% 
+  filter(!is.na(duration))
+```
+
+
+```{r}
+srt_101_trill$duration = as.numeric(srt_101_trill$duration)
+srt_101_tap$duration = as.numeric(srt_101_tap$duration)
+# Do nested model comparisons to determine 
+# whether a main effect for time exists 
+
+null_mod_tap_sp1 = lmer(duration ~ 1 + 
+                          (1 | participant), 
+                        data = srt_101_tap)
+
+
+time_mod_tap_sp1 = lmer(duration ~ time + 
+                          (1 | participant), 
+                        data = srt_101_tap)
+
+anova(null_mod_tap_sp1, time_mod_tap_sp1)
+
+qqnorm(resid(time_mod_tap_sp1))
+```
+
+
+```{r}
+null_mod_trill_sp1 = lmer(duration ~ 1 + 
+                          (1 | participant), 
+                        data = srt_101_trill)
+
+
+
+time_mod_trill_sp1 = lmer(duration ~ time + 
+                          (1 | participant), 
+                        data = srt_101_trill)
+
+anova(null_mod_trill_sp1, time_mod_trill_sp1)
+
+
+fixef(time_mod_trill_sp1)
+
+
+qqnorm(resid(time_mod_trill_sp1))
+```
+
+```{r}
+srt_101_tap %>% 
+  ggplot(aes(x = duration, y = time)) + geom_boxplot()
+```
+
+```{r}
+srt_101_trill %>% 
+  ggplot(aes(x = duration, y = time)) + geom_boxplot()
+```
+
+```{r}
+summary(time_mod_trill_sp1)
+```

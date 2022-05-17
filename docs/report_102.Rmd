@@ -1,0 +1,124 @@
+---
+title: "Spanish 102 Sentence Reading Task Results"
+output: pdf_document
+---
+##  Andrés-Rojas (2022)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+
+```{r, include=FALSE}
+library(here)
+library(tidyverse)
+library(kableExtra)
+
+source(here("scripts", "05_load_data.R"))
+
+srt = srt %>% 
+  filter(level == "sp102")
+```
+
+### Overview
+
+```{r}
+tap_df <- srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>% 
+  group_by(participant, is_trill, time) %>% 
+  filter(is_trill == "tap") %>% 
+  summarize(mean = mean(as.numeric(duration))) %>% 
+  pivot_wider(names_from = participant, values_from = mean) %>% 
+  dplyr::select(time, P1E, P2E, P3E) %>% 
+  arrange(desc(time)) 
+
+tap_df$is_trill <- NULL
+
+tap_df %>% 
+  knitr::kable(digits = 2, caption = "Average duration of tap productions during pre and post-tests per participant") %>% 
+  kable_styling(full_width = FALSE)
+
+
+```
+
+```{r}
+
+trill_df <- srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>% 
+  group_by(participant, is_trill, time) %>% 
+  filter(is_trill == "trill") %>% 
+  summarize(mean = mean(as.numeric(duration))) %>% 
+  pivot_wider(names_from = participant, values_from = mean) %>%
+  dplyr::select(time, P1E, P2E, P3E) %>% 
+  arrange(desc(time))
+
+trill_df$is_trill <- NULL
+
+trill_df %>% 
+  knitr::kable(digits = 2, caption = "Average duration of trill productions during pre and post-tests per participant") %>% 
+  kable_styling(full_width = FALSE)
+
+```
+
+
+```{r}
+srt_t_test_sp2 %>%
+  filter(tap_or_trill == "tap") %>% 
+  select(Participant, df, p_val, t_val, estimate, ci_lo, ci_hi) %>% 
+  knitr::kable(digits = 3, caption = "Results of Paired t-tests of taps comparing duration during pre and post tests") %>% 
+  kable_styling(full_width = FALSE)
+
+```
+
+Table 3 shows the results of each t-test in which tap duration production is compared from pre to post test. 
+The results suggest that the duration of taps by participant P1E fell by 
+`r srt_t_test_sp2$estimate[1] %>% round(digits = 2)*-1` (95% CI `r srt_t_test_sp2$ci_hi[1] %>% round(digits = 2)*-1` - `r srt_t_test_sp2$ci_lo[1] %>% round(digits = 2)*-1`), as determined by a paired t-test (t(`r srt_t_test_sp2$df[1]`) = `r srt_t_test_sp2$t_val[1] %>% round(digits = 3)`, p < .005).
+The same trend was observed in P2E: tap duration decreased by `r srt_t_test_sp2$estimate[3] %>% round(digits = 2)*-1` (95% CI `r srt_t_test_sp2$ci_hi[3] %>% round(digits = 2)*-1` - `r srt_t_test_sp2$ci_lo[3] %>% round(digits = 2)*-1`), as determined by a paired t-test (t(`r srt_t_test_sp2$df[3]`) = `r srt_t_test_sp2$t_val[3] %>% round(digits = 3)`, p < .005), and P3E, whose tap duration decrease by `r srt_t_test_sp2$estimate[5] %>% round(digits = 2)*-1` (95% CI `r srt_t_test_sp2$ci_hi[5] %>% round(digits = 2)*-1` - `r srt_t_test_sp2$ci_lo[5] %>% round(digits = 2)*-1`), as determined by a paired t-test (t(`r srt_t_test_sp2$df[5]`) = `r srt_t_test_sp2$t_val[5] %>% round(digits = 3)`, p < .05).
+
+```{r}
+srt_t_test_sp2 %>%
+  filter(tap_or_trill == "trill") %>% 
+  select(Participant, df, p_val, t_val, estimate, ci_lo, ci_hi) %>% 
+  knitr::kable(digits = 3, caption = "Results of Paired t-tests of trills comparing duration during pre and post tests") %>% 
+  kable_styling(full_width = FALSE)
+
+```
+
+Table 4 shows an analogous analysis in trill production in which pre-test duration was compared to post-test duration. P1E duration increased by 
+`r srt_t_test_sp2$estimate[2] %>% round(digits = 2)` (95% CI  `r srt_t_test_sp2$ci_lo[2] %>% round(digits = 2)` - `r srt_t_test_sp2$ci_hi[2] %>% round(digits = 2)`; t(`r srt_t_test_sp2$df[2]`) = `r srt_t_test_sp2$t_val[2] %>% round(digits = 3)`, p < .005).
+P2E's trill duration increased by `r srt_t_test_sp2$estimate[4] %>% round(digits = 2)` (95% CI  `r srt_t_test_sp2$ci_lo[4] %>% round(digits = 2)` - `r srt_t_test_sp2$ci_hi[4] %>% round(digits = 2)`; t(`r srt_t_test_sp2$df[4]`) = `r srt_t_test_sp2$t_val[4] %>% round(digits = 3)`, p < .005), and P3E's trill duration increased by `r srt_t_test_sp2$estimate[6] %>% round(digits = 2)` (95% CI  `r srt_t_test_sp2$ci_lo[6] %>% round(digits = 2)` - `r srt_t_test_sp2$ci_hi[6] %>% round(digits = 2)`; t(`r srt_t_test_sp2$df[6]`) = `r srt_t_test_sp2$t_val[6] %>% round(digits = 3)`, p < .005)
+
+### Plots
+
+Here are a few boxplots by participant.
+These plots show the distribution of responses per participant in both taps (Figure 1) and trills (Figure 2) between the pre and post tests. 
+
+
+```{r}
+
+level_order <- c('PRE', 'POST')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(x = factor(time, level = level_order), y = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  ylim(0, 100) +
+  facet_wrap(~participant) + xlab("Test Time") + ylab("Rhotic Duration (ms)") +
+  theme_bw() +
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Figure 1: Productions of taps per participant during the pre and post test")
+```
+
+```{r}
+
+
+level_order <- c('PRE', 'POST')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "trill") %>% 
+  ggplot(aes(x = factor(time, level = level_order), y = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_wrap(~participant) + xlab("Test Time") + ylab("Rhotic Duration (ms)") +
+  theme_bw() +
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Figure 2: Productions of trills per participant during the pre and post test")
+```

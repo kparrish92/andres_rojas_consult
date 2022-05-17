@@ -1,0 +1,118 @@
+---
+title: "Report Categorical Analysis"
+format: html
+editor: visual
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(here)
+library(ggpmisc)
+library(sjPlot)
+library(sjlabelled)
+library(sjmisc)
+
+source(here::here("scripts", "05_load_data.R"))
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# Sentence Reading Task
+
+Descriptive Taps
+
+```{r}
+srt %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(time, no_occlusions) %>%
+  summarise(n = n()) %>% 
+  pivot_wider(names_from = time, values_from = n) %>% 
+  select(no_occlusions, PRE, POST) %>% 
+  knitr::kable(Caption = "Taps at pre and post-tests with all data")
+```
+
+```{r}
+srt %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(time, no_occlusions) %>%
+  summarise(n = n()) %>% 
+  pivot_wider(names_from = time, values_from = n) %>% 
+  select(no_occlusions, PRE, POST) %>% 
+  filter(no_occlusions == "1" | no_occlusions == "a") %>%
+  knitr::kable(Caption = "Taps at pre and post-tests with only apporximates and 1 occlusion")
+```
+
+```{r}
+srt %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(time, no_occlusions, participant) %>%
+  summarise(n = n()) %>% 
+  filter(no_occlusions == "1" | no_occlusions == "a") %>%
+  pivot_wider(names_from = time, values_from = n) %>% 
+  knitr::kable(Caption = "Taps at pre and post-tests with only apporximates and 1 occlusion per participant")
+```
+
+## SRT Occlusions
+
+These are logistic regressions, where the probability of realizing a rhotic as either an approximate or with 1 occlusion is modeled as a function of test time (PRE/POST), level (sp 102, sp203/204, sp1).
+
+```{r}
+plot_model(srt_tap_cont)
+```
+
+```{r}
+plot_model(srt_tap_cont, type = "re")
+```
+
+```{r}
+tab_model(srt_tap_cont, show.reflvl = TRUE)
+```
+
+```{r}
+nmc_tap_cont %>% 
+  knitr::kable()
+```
+
+## Lectura task
+
+<!------ add descriptives here ------->
+
+```{r}
+plot_model(int_mod_tap_lectura)
+```
+
+```{r}
+plot_model(int_mod_tap_lectura, type = "re")
+```
+
+```{r}
+tab_model(int_mod_tap_lectura)
+```
+
+```{r}
+nmc_tap_cont_lectura %>% 
+  knitr::kable()
+```
+
+## Picture Naming Task
+
+<!------ add descriptive here ------->
+
+```{r}
+plot_model(int_mod_tap_image_df)
+```
+
+```{r}
+plot_model(int_mod_tap_image_df, type = "re")
+```
+
+```{r}
+tab_model(int_mod_tap_image_df)
+```
+
+```{r}
+nmc_tap_cont_image_df %>% 
+  knitr::kable()
+```

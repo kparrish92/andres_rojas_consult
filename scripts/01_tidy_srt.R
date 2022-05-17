@@ -21,7 +21,7 @@ for(thisRun in 1:nrow(list_of_files))
     row_to_names(row_number = 1) %>% 
     clean_names() %>% 
     select(c(1:6)) %>% 
-    slice(1:158) %>% 
+    dplyr::slice(1:158) %>% 
     mutate("id" = list_of_files$.[thisRun]) %>% 
     mutate(col = 1:158)
   
@@ -56,10 +56,30 @@ srt_tidy <- df_f %>%
 
 
 srt_tidy %>% 
-  group_by(participant, time, is_trill) %>% 
+  group_by(participant, time, is_trill, level) %>% 
   summarize(n = n())
+
+
+
+# check the new data loaded successfully 
+srt_tidy %>% 
+  group_by(level, participant) %>%
+  summarize(n = n())
+  
+srt_tidy = srt_tidy %>% 
+  mutate(no_occlusions = substr(occlusions, 1, 1)) 
+
+srt_tidy = srt_tidy %>% 
+  mutate("level_2" = level) %>% 
+  unite("participant", level, participant, sep = "_") %>% 
+  rename(level = level_2) %>% 
+  filter(!is.na(duration)) %>% 
+  filter(!duration == "N/A /d/") %>% 
+  filter(!duration == "N/A") %>% 
+  filter(!duration == "NA") %>% 
+  filter(!duration == "23_126") %>% 
+  mutate(level = replace(level, level == "sp203" | level == "sp204", "sp203/204")) 
 
 srt_tidy %>% 
   write.csv(here("data", "tidy", "srt_data.csv"))
-
 
