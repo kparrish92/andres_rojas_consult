@@ -27,7 +27,6 @@ nmc_tap_cont_lectura = read.csv(here("data", "tidy", "nmc_tap_cont_lectura.csv")
 nmc_tap_cont_pct = read.csv(here("data", "tidy", "nmc_tap_cont_image_df.csv"))
 
 
-
 # load continuous tap/trill models 
 srt_tap_mod = read_rds(here("data", "models", "srt_tap.rds"))
 srt_trill_mod = read_rds(here("data", "models", "srt_trill.rds"))

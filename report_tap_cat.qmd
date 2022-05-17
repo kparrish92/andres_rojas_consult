@@ -24,14 +24,36 @@ source(here::here("scripts", "05_load_data.R"))
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
+# Statistical Analysis
+
+Given that the majority of tap realizations were either approximates or with one occlusion, the data were analyzed using a series of binary logisitic regression models using a logit link function. 
+These models predict the probability (reported as log-odds and odds ratios) that a tap will be realized as an approximate.
+Like the continuous models and categorical trill model, the fixed effect and random effect structures are the same for the Sentence Reading Task and the Lectura: Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. 
+The Picture Naming Task full model failed to converge. 
+As a result, the model reported here analyzes the probability of an approximate realization as a function of *time*  and *group* but not their interaction. 
+Given that the body of evidence produced thus far has not produced compelling evidence that there are group differences, the lack of a full model should not greatly impact the results. 
+
+More importantly, all models maintain the random effect structures, which allow for individual differences ot be examined.
+In particular, the random slope by participant was included to determine how test time impacted each participant individually. 
+
+These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
+
 ## Sentence Reading Task
+
+The analyses here follow the same order as the others: groups analysis followed by individual analysis. 
+First the group analysis is reported, followed by individual anaysis. 
+
+Table 1 shows the number of approximate and single occlusion realizations of taps in each group at both pre and post test.
+Figure 1 is a visualization of the same information. 
 
 **Table 1**
 
 ```{r}
 srt_tidy_tap = srt %>% 
   filter(is_trill == "tap") %>% 
-  filter(no_occlusions == "a" | no_occlusions == 1)
+  filter(no_occlusions == "a" | no_occlusions == 1)  %>%
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximate")) 
 
 srt_tidy_tap %>% 
   group_by(level, time, no_occlusions) %>% 
@@ -43,7 +65,7 @@ srt_tidy_tap %>%
 
 **Figure 1**
 
-```{r}
+```{r figure_1}
 
 level_order <- c('PRE', 'POST')
 
@@ -65,19 +87,10 @@ srt_tidy_tap %>%
         strip.background = element_rect(color = "black", size = 1))
 ```
 
-**Figure 2**
 
-```{r}
-plot_model(srt_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
-```
+Table 2 shows the nested model comparisons, where there is a main effect of *time*, but not *group* nor the interaction.
 
 **Table 2**
-
-```{r}
-tab_model(srt_tap_cat, dv.labels = "Probability of approximate realization")
-```
-
-**Table 3**
 
 ```{r}
 nmc_tap_cont %>%
@@ -92,19 +105,47 @@ nmc_tap_cont %>%
 
 ```
 
+Table 3 and Figure 2 show the results of the group model. 
+The model in Table 3 reports odds-ratios, where an odds ratio of less than 1 is a negative association between the predictor and the outcome. 
+The same information is plotted in Figure 2, which suggest that post-test was associated with a lower probability of realizing a tap as an approximate. 
+
+**Table 3**
+
 ```{r}
+tab_model(srt_tap_cat, dv.labels = "Probability of approximate realization")
+```
+
+**Figure 2**
+
+```{r figure_2}
+plot_model(srt_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
+```
+
+Figure 3 shows the change in log odds of each participant as a function of test time. A negative estimate in this case can be interpreted as a decrease in probability as a function of training. 
+In other words, every participant showed evidence of increased probability of realizing the tap with one occlusion at post test. 
+
+**Figure 3**
+```{r figure_3}
 plot_re(model = srt_tap_cat, effect = "timePOST", task = "Sentence Reading Task", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
 ```
 
 
 ## Lectura
 
-**Table**
+Table 4 and Figure 4 show the number of approximate and single occlusions realizations of taps in the lectura task.
+Table 5 reveals a main effect of both *time* and *group*, but not the interaction. 
+This suggests that, as in the other models, *time* impacted the probability of approximate realization. 
+Differently from the others, the main effect of *group* suggest that the baseline probability of producing an approximate at the pre-test was distinct. 
+In particular, the model output (Figure 5 and Table 6) suggest that both the Spanish 203/204 groups was more likely at pre-test to realize taps as approximates, but this effect appears to be marginal. 
+
+**Table 4**
 
 ```{r}
 lectura_tidy_tap = lectura %>% 
   filter(is_trill == "tap") %>% 
-  filter(no_occlusions == "a" | no_occlusions == 1)
+  filter(no_occlusions == "a" | no_occlusions == 1)  %>%
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximate")) 
 
 lectura_tidy_tap %>% 
   group_by(level, time, no_occlusions) %>% 
@@ -114,9 +155,9 @@ lectura_tidy_tap %>%
   knitr::kable()
 ```
 
-**Figure**
+**Figure 4**
 
-```{r}
+```{r figure_4}
 
 level_order <- c('PRE', 'POST')
 
@@ -138,19 +179,7 @@ lectura_tidy_tap %>%
         strip.background = element_rect(color = "black", size = 1))
 ```
 
-**Figure**
-
-```{r}
-plot_model(lectura_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
-```
-
-**Table**
-
-```{r}
-tab_model(lectura_tap_cat, dv.labels = "Probability of approximate realization")
-```
-
-**Table 3**
+**Table 5**
 
 ```{r}
 nmc_tap_cont_lectura %>%
@@ -165,18 +194,39 @@ nmc_tap_cont_lectura %>%
 
 ```
 
+**Figure 5**
+
+```{r figure_5}
+plot_model(lectura_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Table 6**
+
 ```{r}
+tab_model(lectura_tap_cat, dv.labels = "Probability of approximate realization")
+```
+
+Finally, Figure 6 again shows the change in log-odds of realizing a tap as an approximate from pre to post test. Again, all estimates are negative, providing evidence that training was associated with a decrease in the probability of realizing a tap as an approximate.
+
+**Figure 6**
+```{r figure_6}
 plot_re(model = lectura_tap_cat, effect = "timePOST", task = "Lectura", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
 ```
 
 ## Picture Naming Task
 
-**Table 1**
+Finally, the picture naming task also provided evidence of the effectiveness of training in tap realization training. 
+Table 7 and Figure 7 show the raw data, while the nested model comparisons (Table 8) reveal a main effect for time.
+Again, the model's odds ratios (Table 9, Figure 8) of under 1 suggest a lower probability of approximate realization at the post-test.
+Finally, Figure 9 shows that approximate realizations were less probable at post-test by all participants.
+  
+**Table 7**
 
 ```{r}
 pct_tidy_tap = image_df %>% 
   filter(is_trill == "tap") %>% 
-  filter(no_occlusions == "a" | no_occlusions == 1)
+  filter(no_occlusions == "a" | no_occlusions == 1)  %>%
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", "approximate")) 
 
 pct_tidy_tap %>% 
   group_by(level, time, no_occlusions) %>% 
@@ -186,9 +236,9 @@ pct_tidy_tap %>%
   knitr::kable()
 ```
 
-**Figure 1**
+**Figure 7**
 
-```{r}
+```{r figure_7}
 
 level_order <- c('PRE', 'POST')
 
@@ -210,24 +260,12 @@ pct_tidy_tap %>%
         strip.background = element_rect(color = "black", size = 1))
 ```
 
-**Figure 2**
-
-```{r figure_2}
-plot_model(pct_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times"))
-```
-
-**Table 2**
-
-```{r}
-tab_model(pct_tap_cat, dv.labels = "Probability of approximate realization")
-```
-
-**Table 3**
+**Table 8**
 
 ```{r}
 nmc_tap_cont_pct %>%
-  mutate("Model" = c("Null", "Time", "Group",
-                   "Time:Group Interaction")) %>%
+  mutate("Model" = c("Null", "Time", "Group"
+                   )) %>%
            rename("P-value" = `Pr..Chisq.`) %>% 
            select(Model, Chisq, Df, `P-value`) %>% 
   mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
@@ -237,6 +275,19 @@ nmc_tap_cont_pct %>%
 
 ```
 
+**Table 9**
+
 ```{r}
-plot_re(model = pct_tap_cat, effect = "timePOST", task = "Picture Naming Task", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
+tab_model(pct_tap_cat, dv.labels = "Probability of approximate realization")
+```
+
+**Figure 8**
+
+```{r figure_8}
+plot_model(pct_tap_cat, title = "Probability of approximate realization") + theme(text=element_text(size=10, family="Times")) 
+```
+
+**Figure 9**
+```{r}
+plot_re_2(model = pct_tap_cat, effect = "timePOST", task = "Picture Naming Task", taps = "Taps", continuous = "Categorical")  
 ```

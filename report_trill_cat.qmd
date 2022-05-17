@@ -1,5 +1,5 @@
 ---
-title: "report trills occlusions"
+title: "Trills analysis by number of occlusions"
 format: html
 editor: visual
 ---
@@ -24,7 +24,13 @@ source(here::here("scripts", "05_load_data.R"))
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
+# Statistical Analysis
+
+Three total linear mixed effects models are reported for the categorical analysis of trills, one for each of three tasks (the Sentence Reading Task, the Lectura task, and the Picture Naming Task). In each model, the **outcome/dependent variable was the total number of occlusions**. Like the continuous models, the fixed effect and random effect structures are the same: Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. To examine individual differences, a random slope by participant was included to determine how test time impacted each participant individually. These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
+
 ## Sentence Reading Task
+
+Table 1 shows the mean number of occlusions at pre and post test in the Sentence Reading Task by all groups, while Figure 1 shows the number of occurrences in the data of each number of occlusions (1-4) at pre and post test. An inspection of this plot suggests that average occlusions increased from pre to post-test.
 
 **Table 1**
 
@@ -43,8 +49,6 @@ srt_tidy_trill %>%
   knitr::kable()
 
 ```
-
-Figure 1 shows the number of occurrences of each number of trills in each group at pre and post test.
 
 **Figure 1**
 
@@ -70,19 +74,9 @@ srt_tidy_trill %>%
         strip.background = element_rect(color = "black", size = 1))
 ```
 
-**Figure 2**
-
-```{r figure_2}
-plot_model(srt_trill_cat, title = "Number of Occlusions") + theme(text=element_text(size=10, family="Times"))
-```
+Table 2 reveals the main effect of *time*, but, like the other models, no main effect for *group* and no interaction. Table 3 and Figure 2 visualize the parameters of the model. They show a positive parameter estimate for time, suggesting that the post-test time was associated with an increase in the number of occlusions at the group level.
 
 **Table 2**
-
-```{r}
-tab_model(srt_trill_cat, dv.labels = "Number of Occlusions")
-```
-
-**Table 3**
 
 ```{r}
 nmc_trill_cont %>%
@@ -96,6 +90,20 @@ nmc_trill_cont %>%
   knitr::kable(digits = 2)
 
 ```
+
+**Table 3**
+
+```{r}
+tab_model(srt_trill_cat, dv.labels = "Number of Occlusions")
+```
+
+**Figure 2**
+
+```{r figure_2}
+plot_model(srt_trill_cat, title = "Number of Occlusions") + theme(text=element_text(size=10, family="Times"))
+```
+
+Table 4 shows the individual analysis of the number of occlusions per participant, and Figure 3 shows the effect of training (time) per participant. As the figure shows, every participant's estimate is positive, suggesting that every participant experienced an increase in number occlusions at the post-test.
 
 **Table 4**
 
@@ -116,6 +124,8 @@ plot_re(model = srt_trill_cat, effect = "timePOST", task = "Sentence Reading Tas
 ```
 
 ## Lectura
+
+The interpretation of the results in the Lectura task are practically the same as the SRT: at the group and individual levels, there was an increase in number of occlusions of trills associated with the post-test (time). There was again only a main effect for *time*, and a positive parameter estimate for both the group and all individuals.
 
 **Table 5**
 
@@ -203,6 +213,8 @@ plot_re(model = lectura_trill_cat, effect = "timePOST", task = "Lectura", taps =
 ```
 
 ## Picture Naming Task
+
+The Picture Naming Task shows the same results as the first two tasks: all participants occluded more at the post-test. There was only a main effect of *time* and all the participants showed evidence of an increase in occlusions at post-test (positive parameter estimates based on random effects).
 
 **Table 9**
 

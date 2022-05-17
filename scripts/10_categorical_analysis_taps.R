@@ -20,7 +20,11 @@ srt_tidy_tap %>%
 
 srt_tidy_tap = srt %>% 
   filter(is_trill == "tap") %>% 
-  filter(no_occlusions == 1 | no_occlusions == "a")
+  filter(no_occlusions == 1 | no_occlusions == "a") %>% 
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximate")) 
+
+
 
 
 srt_tidy_tap$time <- relevel(as.factor(srt_tidy_tap$time), ref = "PRE")
@@ -63,7 +67,9 @@ lectura %>%
 
 lectura_tidy_tap = lectura %>% 
   filter(is_trill == "tap") %>% 
-  filter(no_occlusions == 1 | no_occlusions == "a")
+  filter(no_occlusions == 1 | no_occlusions == "a") %>% 
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximate")) 
 
 lectura_tidy_tap$time <- relevel(as.factor(lectura_tidy_tap$time), ref = "PRE")
 
@@ -108,7 +114,9 @@ image_df %>%
 
 image_df_tidy_tap = image_df %>% 
   filter(is_trill == "tap") %>% 
-  filter(no_occlusions == 1 | no_occlusions == "a")
+  filter(no_occlusions == 1 | no_occlusions == "a") %>% 
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximate")) 
 
 
 image_df_tidy_tap$time <- relevel(as.factor(image_df_tidy_tap$time), ref = "PRE")
@@ -126,19 +134,20 @@ group_mod_tap_image_df = glmer(as.factor(no_occlusions) ~ time + level +
                                  (time | participant), family = "binomial"(link = "logit"), 
                                data = image_df_tidy_tap)
 
+#  convergence issue - using non int model
 int_mod_tap_image_df = glmer(as.factor(no_occlusions) ~ time + level + 
                                time:level +
                                (time | participant), family = "binomial"(link = "logit"),
                              data = image_df_tidy_tap)
 
 nmc_tap_cont_image_df = anova(null_mod_tap_image_df, time_mod_tap_image_df, 
-                              group_mod_tap_image_df, int_mod_tap_image_df)
+                              group_mod_tap_image_df)
 
 
 nmc_tap_cont_image_df %>% 
   write.csv(here("data", "tidy", "nmc_tap_cont_image_df.csv"))
 
-int_mod_tap_image_df %>% 
+group_mod_tap_image_df %>% 
   write_rds(here("data", "models", "int_mod_tap_image_df.rds"))
 
 

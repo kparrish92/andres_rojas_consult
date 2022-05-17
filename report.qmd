@@ -30,10 +30,6 @@ Six total linear mixed effects models are reported here. For each of three tasks
 # Sentence Reading Task
 
 In each task, the results begin with a group analysis and ends with the individual analysis.
-In this section, I will lay out what each Table and Figure represents in the context of the Sentence Reading Task.
-So for example, when I mention Table 1 and Table 2, this is referring to the Sentence Reading Task as an example, but also applies to the first two tables in the Lectura section (Tables 9 and 10).
-The interpretation of each test is the same for each of the three tasks, so this is simply for the sake of brevity.
-
 The group analysis begins in each case with descriptive statistics, showing the means of the dependent variable at pre and post-tests by each group in taps and trills (Table 1) and trills (Table 2).
 Figure 1 plots the raw duration values per group at pre and post test in taps, and Figure 2 shows the same information for trills. 
 
