@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 Given that the majority of tap realizations were either approximants or with one occlusion, the data were analyzed using a series of binary logisitic regression models using a logit link function. 
 These models predict the probability (reported as log-odds and odds ratios) that a tap will be realized as an approximant.
 Like the continuous models and categorical trill model, the fixed effect and random effect structures are the same for the Sentence Reading Task and the Lectura: Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. 
-The Picture Naming Task full model failed to converge. 
+The Picture Description Task full model failed to converge. 
 As a result, the model reported here analyzes the probability of an approximant realization as a function of *time*  and *group* but not their interaction. 
 Given that the body of evidence produced thus far has not produced compelling evidence that there are group differences, the lack of a full model should not greatly impact the results. 
 
@@ -212,9 +212,9 @@ Finally, Figure 6 again shows the change in log-odds of realizing a tap as an ap
 plot_re(model = lectura_tap_cat, effect = "timePOST", task = "Lectura", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
 ```
 
-## Picture Naming Task
+## Picture Description Task
 
-Finally, the picture naming task also provided evidence of the effectiveness of training in tap realization training. 
+Finally, the Picture Description Task also provided evidence of the effectiveness of training in tap realization training. 
 Table 7 and Figure 7 show the raw data, while the nested model comparisons (Table 8) reveal a main effect for time.
 Again, the model's odds ratios (Table 9, Figure 8) of under 1 suggest a lower probability of approximant realization at the post-test.
 Finally, Figure 9 shows that approximant realizations were less probable at post-test by all participants.
@@ -288,5 +288,5 @@ plot_model(pct_tap_cat, title = "Probability of approximant realization") + them
 
 **Figure 9**
 ```{r}
-plot_re_2(model = pct_tap_cat, effect = "timePOST", task = "Picture Naming Task", taps = "Taps", continuous = "Categorical")  
+plot_re_2(model = pct_tap_cat, effect = "timePOST", task = "Picture Description Task", taps = "Taps", continuous = "Categorical")  
 ```

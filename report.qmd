@@ -25,14 +25,11 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 # Statistical Analysis
 
-Six total linear mixed effects models are reported here. For each of three tasks (the Sentence Reading Task SRT, the Lectura task, and the Picture Naming Task) two models were run, where one was for taps and the other was for trills. In each model, the **outcome/dependent variable was duration in milliseconds**. Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. To examine individual differences, a random slope by participant was included to determine how test time impacted each participant individually. These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
+Six total linear mixed effects models are reported here. For each of three tasks (the Sentence Reading Task SRT, the Lectura task, and the Picture Description Task) two models were run, where one was for taps and the other was for trills. In each model, the **outcome/dependent variable was duration in milliseconds**. Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. To examine individual differences, a random slope by participant was included to determine how test time impacted each participant individually. These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
 
 # Sentence Reading Task
 
-In each task, the results begin with a group analysis and ends with the individual analysis.
-The group analysis begins in each case with descriptive statistics, showing the means of the dependent variable at pre and post-tests by each group in taps and trills (Table 1) and trills (Table 2).
-Figure 1 plots the raw duration values per group at pre and post test in taps, and Figure 2 shows the same information for trills. 
-
+In each task, the results begin with a group analysis and ends with the individual analysis. The group analysis begins in each case with descriptive statistics, showing the means of the dependent variable at pre and post-tests by each group in taps and trills (Table 1) and trills (Table 2). Figure 1 plots the raw duration values per group at pre and post test in taps, and Figure 2 shows the same information for trills.
 
 ## Group Analysis
 
@@ -99,9 +96,7 @@ srt %>%
 
 An inspection of Tables 1 and 2 together with Figures 1 and 2 suggest that, overall, trills exhibited longer duration at post-test, while taps were associated with shorter duration.
 
-Table 3 represents a table of nested model comparisons for the tap model in the Sentence Reading Task using the `anova` function in R that was carried out to assess main effects and interactions.
-The table shows that there was a main effect for *time*, but not for *group* or the *time* by *group* interaction.
-This suggests there is evidence for a difference in duration of taps between pre and post-tests, but that there is not evidence that the level of Spanish course had an impact on the training (no interaction), nor on their base-line abilities at the group level (no main effect of group).
+Table 3 represents a table of nested model comparisons for the tap model in the Sentence Reading Task using the `anova` function in R that was carried out to assess main effects and interactions. The table shows that there was a main effect for *time*, but not for *group* or the *time* by *group* interaction. This suggests there is evidence for a difference in duration of taps between pre and post-tests, but that there is not evidence that the level of Spanish course had an impact on the training (no interaction), nor on their base-line abilities at the group level (no main effect of group).
 
 Table 4 shows nested model comparisons for trills, where the results and interpretation mirror those of taps: there was a main effect for *time*, but not for *group* or the *time* by *group* interaction.
 
@@ -134,11 +129,7 @@ nmc_srt_trill %>%
 
 ```
 
-Tables 5 and 6 show the results of the linear mixed effects models, while figures 3 and 4 are visualizations of these models. 
-Table 5 and Figure 3 show a negative effect of *time* for taps, providing evidence that tap duration decreased as a function of training. 
-No further evidence was revealed suggesting that the group that a participant belonged meaningfully impacted the effect of training. 
-Table 6 and Figure 4 suggest that the effect of *time* was positive for training, providing evidence that trill duration increased as at post-test. 
-However, the confidence interval surrounding the parameter estimate for *time* in the trill model contains zero, which implies that it is uncertain at this sample size whether the training increases trill duration. 
+Tables 5 and 6 show the results of the linear mixed effects models, while figures 3 and 4 are visualizations of these models. Table 5 and Figure 3 show a negative effect of *time* for taps, providing evidence that tap duration decreased as a function of training. No further evidence was revealed suggesting that the group that a participant belonged meaningfully impacted the effect of training. Table 6 and Figure 4 suggest that the effect of *time* was positive for training, providing evidence that trill duration increased as at post-test. However, the confidence interval surrounding the parameter estimate for *time* in the trill model contains zero, which implies that it is uncertain at this sample size whether the training increases trill duration.
 
 **Table 5: Sentence Reading Task Taps Model Table**
 
@@ -166,8 +157,7 @@ plot_model(srt_trill_mod) + theme(text=element_text(size=10, family="Times"))
 
 ## Individual Analysis
 
-Table 7 shows the average duration per participant of taps at pre and post test, while Table 8 shows this information for trills.
-Figures 5 and 6 visualize the raw duration values in boxplots per participant in both taps and trills. 
+Table 7 shows the average duration per participant of taps at pre and post test, while Table 8 shows this information for trills. Figures 5 and 6 visualize the raw duration values in boxplots per participant in both taps and trills.
 
 **Table 7: SRT - mean tap duration of each participant in pre and post tests**
 
@@ -233,15 +223,9 @@ srt %>%
         legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Trills by each participant in the Sentence Reading Task")
 ```
 
-The individual analysis was done by using the random effects from the models reported in the group analysis (Tables 5 and 6).
-The random slope-by-participant from the model was used to calculate the effect of training per participant by adding the fixed effect and random effect together (taking into account intercept and slope adjustments at the group levels). 
-The y axis of each plot shows each participant id, with their group followed by their participant id. 
-The points represent the numerical values on the right side, and are an individual estimate for the effect of training with a 95% confidence interval.
-The color of the point corresponds to a negative (red) or positive (blue) effect of training. 
+The individual analysis was done by using the random effects from the models reported in the group analysis (Tables 5 and 6). The random slope-by-participant from the model was used to calculate the effect of training per participant by adding the fixed effect and random effect together (taking into account intercept and slope adjustments at the group levels). The y axis of each plot shows each participant id, with their group followed by their participant id. The points represent the numerical values on the right side, and are an individual estimate for the effect of training with a 95% confidence interval. The color of the point corresponds to a negative (red) or positive (blue) effect of training.
 
-In Figure 7, it can be seen that 12 of the 13 participants show strong evidence that their tap duration decreased as a function of time.
-Figure 8 shows similar evidence in trills, but shows that one participant decreased their trill duration from pre to post test. 
-Overall, training seems to be effective in both taps and trills for almost every participant. 
+In Figure 7, it can be seen that 12 of the 13 participants show strong evidence that their tap duration decreased as a function of time. Figure 8 shows similar evidence in trills, but shows that one participant decreased their trill duration from pre to post test. Overall, training seems to be effective in both taps and trills for almost every participant.
 
 **Figure 7: Random Effects plot Taps**
 
@@ -377,9 +361,7 @@ plot_model(lectura_trill_mod) + theme(text=element_text(size=10, family="Times")
 
 ## Individual Analysis
 
-The individual analyses suggest that the training was effective for almost all participants overall. 
-In taps, every participant estimate was negative, as expected.
-In trills, every participant's estimate was positive, except for one.
+The individual analyses suggest that the training was effective for almost all participants overall. In taps, every participant estimate was negative, as expected. In trills, every participant's estimate was positive, except for one.
 
 **Table 15: lectura - mean tap duration of each participant in pre and post tests**
 
@@ -457,11 +439,9 @@ plot_re(model = lectura_tap_mod, effect = "timePOST", task = "lectura", taps = "
 plot_re(model = lectura_trill_mod, effect = "timePOST", task = "lectura", taps = "Trills", continuous = "Continuous") + xlim(-50, 150)
 ```
 
-# Picture Naming Task
+# Picture Description Task
 
-Like the SRT and lectura, there was evidence that tap duration decreased as a function of training while trill duration increased.
-Like the lectura task, there were main effects in both models for *time*, where the parameter estimates of the models were negative for taps and positive for trills.
-Neither model showed a main effect of *group* or an interaction between *group* and *time*. 
+Like the SRT and lectura, there was evidence that tap duration decreased as a function of training while trill duration increased. Like the lectura task, there were main effects in both models for *time*, where the parameter estimates of the models were negative for taps and positive for trills. Neither model showed a main effect of *group* or an interaction between *group* and *time*.
 
 ## Group Analysis
 
@@ -526,7 +506,7 @@ image_df %>%
         legend.position = "bottom") + theme(legend.position = "none") + ggtitle("image_df: Duration of Trills by each group")
 ```
 
-**Table 19: Nested Model Comparisons for tap models in the Picture Naming Task**
+**Table 19: Nested Model Comparisons for tap models in the Picture Description Task**
 
 ```{r table_19}
 nmc_image_df_tap %>%
@@ -540,7 +520,7 @@ nmc_image_df_tap %>%
   knitr::kable(digits = 2)
 ```
 
-**Table 20: Nested Model Comparisons for trill models in the Picture Naming Task**
+**Table 20: Nested Model Comparisons for trill models in the Picture Description Task**
 
 ```{r table_20}
 nmc_image_df_trill %>%
@@ -555,25 +535,25 @@ nmc_image_df_trill %>%
 
 ```
 
-**Table 21: Picture Naming Task Taps Model Table**
+**Table 21: Picture Description Task Taps Model Table**
 
 ```{r table_21}
 tab_model(image_df_tap_mod)
 ```
 
-**Table 22: Picture Naming Task Trills Model Table**
+**Table 22: Picture Description Task Trills Model Table**
 
 ```{r table_22}
 tab_model(image_df_trill_mod)
 ```
 
-**Figure 19: Picture Naming Task Taps Model Visualization**
+**Figure 19: Picture Description Task Taps Model Visualization**
 
 ```{r figure_19}
 plot_model(image_df_tap_mod) + theme(text=element_text(size=10, family="Times"))
 ```
 
-**Figure 20: Picture Naming Task Trills Model Visualization**
+**Figure 20: Picture Description Task Trills Model Visualization**
 
 ```{r figure_20}
 plot_model(image_df_trill_mod) + theme(text=element_text(size=10, family="Times")) +
@@ -582,10 +562,9 @@ plot_model(image_df_trill_mod) + theme(text=element_text(size=10, family="Times"
 
 ## Individual Analysis
 
-The individual analysis corroborates the trends seen in the group analysis. 
-Namely, all participants showed a negative effect of training on tap duration (Figure 23), and a positive effect of training of trill duration (Figure 24).
+The individual analysis corroborates the trends seen in the group analysis. Namely, all participants showed a negative effect of training on tap duration (Figure 23), and a positive effect of training of trill duration (Figure 24).
 
-**Table 23: Picture Naming Task - mean tap duration of each participant in pre and post tests**
+**Table 23: Picture Description Task - mean tap duration of each participant in pre and post tests**
 
 ```{r table_23}
 image_df %>% 
@@ -600,7 +579,7 @@ image_df %>%
   knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
 ```
 
-**Table 24: Picture Naming Task - mean trill duration of each participant in pre and post tests**
+**Table 24: Picture Description Task - mean trill duration of each participant in pre and post tests**
 
 ```{r table_24}
 image_df$duration = as.numeric(image_df$duration)
@@ -614,7 +593,7 @@ image_df %>%
   knitr::kable(caption = "Mean and Standard deviation of taps by each participant at PRE and POST tests")
 ```
 
-**Figure 21: Picture Naming Task - boxplots of the duration of taps per participant at pre and post-test**
+**Figure 21: Picture Description Task - boxplots of the duration of taps per participant at pre and post-test**
 
 ```{r figure_21}
 level_order <- c('POST', 'PRE')
@@ -633,7 +612,7 @@ image_df %>%
         legend.position = "bottom") + theme(legend.position = "none") + ggtitle("Duration of Taps by each participant in the image_df")
 ```
 
-**Figure 22: Picture Naming Task - boxplots of the duration of trills per participant at pre and post-test**
+**Figure 22: Picture Description Task - boxplots of the duration of trills per participant at pre and post-test**
 
 ```{r figure_22}
 level_order <- c('POST', 'PRE')
@@ -656,11 +635,11 @@ image_df %>%
 **Figure 23: Random Effects plot Taps**
 
 ```{r figure_23}
-plot_re(model = image_df_tap_mod, effect = "timePOST", task = "Picture Naming Task", taps = "Taps", continuous = "Continuous")
+plot_re(model = image_df_tap_mod, effect = "timePOST", task = "Picture Description Task", taps = "Taps", continuous = "Continuous")
 ```
 
 **Figure 24: Random Effects plot Trills**
 
 ```{r, figure_24}
-plot_re(model = image_df_trill_mod, effect = "timePOST", task = "Picture Naming Task", taps = "Trills", continuous = "Continuous") + scale_fill_manual(values=c("#0dbaff")) + xlim(-20, 150)
+plot_re(model = image_df_trill_mod, effect = "timePOST", task = "Picture Description Task", taps = "Trills", continuous = "Continuous") + scale_fill_manual(values=c("#0dbaff")) + xlim(-20, 150)
 ```

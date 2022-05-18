@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 # Statistical Analysis
 
-Three total linear mixed effects models are reported for the categorical analysis of trills, one for each of three tasks (the Sentence Reading Task, the Lectura task, and the Picture Naming Task). In each model, the **outcome/dependent variable was the total number of occlusions**. Like the continuous models, the fixed effect and random effect structures are the same: Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. To examine individual differences, a random slope by participant was included to determine how test time impacted each participant individually. These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
+Three total linear mixed effects models are reported for the categorical analysis of trills, one for each of three tasks (the Sentence Reading Task, the Lectura task, and the Picture Description Task). In each model, the **outcome/dependent variable was the total number of occlusions**. Like the continuous models, the fixed effect and random effect structures are the same: Each model included the fixed effects predictors of *time* (2 levels: pre or post-test), *group*, (3 levels: Spanish 1 - sp1, Spanish 2, sp102, and the combined Spanish 203/204 group) and their interaction. To examine individual differences, a random slope by participant was included to determine how test time impacted each participant individually. These random slopes produced by the model represent adjustments to the fixed effect predictor of interest, and show how each participant's duration of taps or trills changed as a function of time. Main effects and interactions were assessed by carrying out nested model comparisons, and model assumptions were checked by visual inspection of Q-Q plots.
 
 ## Sentence Reading Task
 
@@ -212,9 +212,9 @@ lectura %>%
 plot_re(model = lectura_trill_cat, effect = "timePOST", task = "Lectura", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
 ```
 
-## Picture Naming Task
+## Picture Description Task
 
-The Picture Naming Task shows the same results as the first two tasks: all participants occluded more at the post-test. There was only a main effect of *time* and all the participants showed evidence of an increase in occlusions at post-test (positive parameter estimates based on random effects).
+The Picture Description Task shows the same results as the first two tasks: all participants occluded more at the post-test. There was only a main effect of *time* and all the participants showed evidence of an increase in occlusions at post-test (positive parameter estimates based on random effects).
 
 **Table 9**
 
@@ -300,5 +300,5 @@ image_df_trill %>%
 **Figure 9**
 
 ```{r figure_9}
-plot_re(model = pct_trill_cat, effect = "timePOST", task = "Picture Naming Task", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
+plot_re(model = pct_trill_cat, effect = "timePOST", task = "Picture Description Task", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
 ```
