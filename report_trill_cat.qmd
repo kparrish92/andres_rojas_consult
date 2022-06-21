@@ -97,6 +97,7 @@ nmc_trill_cont %>%
 tab_model(srt_trill_cat, dv.labels = "Number of Occlusions")
 ```
 
+
 **Figure 2**
 
 ```{r figure_2}

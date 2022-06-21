@@ -1,0 +1,252 @@
+---
+title: "Statistical Blurbs"
+output: html_document
+date: '2022-06-21'
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(here)
+library(ggpmisc)
+library(sjPlot)
+library(sjlabelled)
+library(sjmisc)
+library(lme4)
+library(lmerTest)
+
+source(here::here("scripts", "00_helpers.R"))
+source(here::here("scripts", "05_load_data.R"))
+
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Overview 
+
+The purpose of this document is to provide written interpretations of the statistical methods in more detail. 
+I divided this into three brief sections: descriptive statistics, linear models, and individual analyses. 
+Each section covers what tables and plots are included and briefly describes them.
+
+### Descriptive Statistics
+
+#### Tables
+
+In all analyses, the analysis began with a descriptive table, such as the table below. 
+For the continuous analysis, these tables show the mean duration (Example 1.1: standard deviation in parentheses) at pre and post test by each group.
+For the categorical taps (example 1.2), they show the quantity of approximate and single occlusion realizations at pre and post test, and for the categorical trills (example 1.3), the mean number of occlusions are shown per group and time point. 
+
+**Example 1.1 Continuous (milliseconds) same for taps and trills**
+```{r}
+srt %>% 
+  filter(is_trill == "tap") %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(duration)), digits = 2), " (",round(sd(as.numeric(duration)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable(caption = "Mean and Standard deviation of tap duration by each level at PRE and POST tests", format = "pandoc") 
+```
+
+**Example 1.2 Categorical (no. of approximant or single occlusion realizations) taps**
+```{r}
+srt_tidy_tap = srt %>% 
+  filter(is_trill == "tap") %>% 
+  filter(no_occlusions == "a" | no_occlusions == 1)  %>%
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximant")) 
+
+srt_tidy_tap %>% 
+  group_by(level, time, no_occlusions) %>% 
+  summarize(mean_duration = n()) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, no_occlusions, PRE, POST) %>% 
+  knitr::kable()
+```
+
+**Example 1.3 Categorical (no. of occlusions) Trills**
+```{r table_1}
+srt_tidy_trill = srt %>% 
+  filter(is_trill == "trill") %>% 
+  filter(no_occlusions == 0 | no_occlusions == 1 | 
+           no_occlusions == 2 | no_occlusions == 3 | 
+           no_occlusions == 4)
+
+srt_tidy_trill %>% 
+  group_by(level, time) %>% 
+  summarize(mean_duration = paste0(round(mean(as.numeric(no_occlusions)), digits = 2), " (",round(sd(as.numeric(no_occlusions)), digits = 2),")")) %>% 
+  pivot_wider(names_from = time, values_from = mean_duration) %>% 
+  select(level, PRE, POST) %>% 
+  knitr::kable()
+
+``` 
+
+#### Plots 
+
+For continuous analyses, box plots are used - these are visualizing the information displayed in tables. 
+The y axis displays pre and post tests while the x axis is duration. 
+
+**Example 2**
+```{r figure_1}
+
+level_order <- c('POST', 'PRE')
+
+srt %>% 
+  filter(!duration == "N/A" & !duration == "N/A /d/") %>%
+  filter(is_trill == "tap") %>% 
+  ggplot(aes(y = factor(time, level = level_order), x = as.numeric(duration), color = is_trill)) + geom_boxplot(fill = "deepskyblue4", color = "black", outlier.size = 0) + 
+  facet_grid(~level) + ylab("Test Time") + xlab("Rhotic Duration (ms)") +
+  xlim(0, 100) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  theme(panel.background = element_rect(fill = "grey79"),
+        legend.position = "bottom") + theme(legend.position = "none") + ggtitle("SRT: Duration of Taps by each group")
+
+```
+
+The categorical analyses show a count of either number of occlusions (for the trills), or number of approximant or single occlusion realizations of taps. 
+Here, the y axis represents the total number of occurences of each variable at pre and post test by each group.
+
+**Example 3**
+```{r}
+srt_tidy_tap = srt %>% 
+  filter(is_trill == "tap") %>% 
+  filter(no_occlusions == "a" | no_occlusions == 1)  %>%
+  mutate(no_occlusions = replace(no_occlusions, no_occlusions == "a", 
+                                 "approximant")) 
+
+srt_tidy_trill = srt %>% 
+  filter(is_trill == "trill") %>% 
+  filter(no_occlusions == 0 | no_occlusions == 1 | 
+           no_occlusions == 2 | no_occlusions == 3 | 
+           no_occlusions == 4)
+
+level_order <- c('PRE', 'POST')
+
+p1 = srt_tidy_tap %>%
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+
+p2 = srt_tidy_trill %>%
+  ggplot(aes(x = no_occlusions, fill = factor(time, level = level_order))) +
+      scale_fill_manual(values=c("#fa6652", "#0dbaff")) +
+  geom_bar(position = "dodge", color = "black") +
+  facet_grid(vars(level), vars(factor(time, level = level_order))) +
+  xlab("Number of Occlusions") +
+    theme(text=element_text(size=10, family="Times")) +
+    theme(panel.background = element_rect(fill = "white"),
+          panel.grid.major = element_line(
+            size = 0.1, 
+            linetype = 'solid',
+            colour = "grey"),
+          legend.position = "none") +
+    theme(panel.spacing = unit(.05, "lines"),
+        panel.border = element_rect(color = "black", fill = NA, size = 1), 
+        strip.background = element_rect(color = "black", size = 1))
+
+ggpubr::ggarrange(p1, p2, labels = c("Taps", "Trills"))
+```
+
+Note: The interpretation of the individual analyses are the same as these for both the tables and plots, and were left out of this document for the sake of brevity.
+
+### The Linear Models
+
+For each linear model that we ran, nested model comparisons were done first.
+The nested model comparisons are used to figure out whether there are main effects and interactions in the linear models.
+In each case, table shows which variable was added and test against the previous model to assess whether that variable's addition helped explain the variation of the observed data. 
+For example, in the table below, row 1 shows that, when the variable TIME is assigned to the data, it accounts for some differences that were not accounted for by previous variables (in this case, there were none).
+On the other hand, adding GROUP did not increase our predictive power in a meaningful way, so there was not a main effect (p = .18). 
+Finally, row 3 shows that the TIME by GROUP interaction also did not help account for the data. 
+In these tables, there is no main effect or interaction when p is greater than .05. 
+
+**Example 4**
+```{r}
+nmc_srt_tap %>%
+  mutate("Model" = c("Null", "Time", "Group",
+                   "Time:Group Interaction")) %>%
+           rename("P-value" = `Pr..Chisq.`) %>% 
+           select(Model, Chisq, Df, `P-value`) %>% 
+  mutate(`P-value` = round(`P-value`, digits = 2)) %>% 
+  mutate(`P-value` = replace(`P-value`, `P-value` < .05, "< .05")) %>% 
+  dplyr::slice(2:4) %>% 
+  knitr::kable(digits = 2)
+```
+
+The table below (Example 5) shows the output of the full model described in the nested model comparisons above, while Example 6 is a visualization of this model.
+These examples are a categorical taps model, and predict **the probability of an approximant realization** (examples 5.1, 6.1) at both test times. 
+The tables for the categorical taps are reported as odds ratios.
+The categorical trill models predict **the number of total occlusions** (examples 5.2, 6.2), while the continuous models for taps and trills both predict **duration in milliseconds** (examples 5.3, 6.3).
+The plots are visualizations of the parameter estimates of each model. 
+These model tables contain a lot of information that is not all necessary to report in prose.
+The most important information to report is the estimate for time[POST] in each case, which is the change in the outcome variable from pre to post test for the 101 group. 
+The other parameter estimates can be discussed too, but they often intersect 0, which is typically referred to as being "non-significant". 
+Additionally, if you want to report the percentage of variance explained, the conditional R-squared at the bottom of the table can be read as a percentage (for example, in 5.1 the model explains 60.8% of the variance observed in the data).
+Note that these tables also report your number of participants "Nparticipant" and total observations. 
+
+**Example 5.1**
+```{r}
+tab_model(srt_tap_cat, dv.labels = "Probability of approximant realization")
+```
+
+**Example 5.2**
+```{r}
+tab_model(srt_trill_cat, dv.labels = "Number of Occlusions")
+```
+
+**Example 5.3**
+```{r}
+tab_model(srt_tap_mod)
+```
+
+**Example 6.1**
+```{r}
+plot_model(srt_tap_cat, title = "Probability of approximant realization") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Example 6.2**
+```{r figure_8}
+plot_model(pct_trill_cat, title = "Number of Occlusions") + theme(text=element_text(size=10, family="Times"))
+```
+
+**Example 6.3**
+```{r}
+plot_model(srt_tap_mod) + theme(text=element_text(size=10, family="Times"))
+```
+
+### Individual Analyses 
+
+Finally, the random effects plots demonstrate how each participant changed in a given outcome (either duration - example 7, log-odds(probability) example 8, or number of occlusions - example 9) from pre to post test. 
+In these cases, the actual estimate is the number on the right, with the 95% confidence interval in parentheses. 
+Example 7 shows the sentence reading task results for the continuous analysis for taps and the units of the right are in milliseconds. 
+Example 8 shows the sentence reading task results for the categorical analysis for taps and the units of the right are in log-odds.
+Finally, example 9 shows the sentence reading task results for the categorical analysis for trills and the units of the right are in number of occlusions.
+All numbers are the amount of change in that given unit from pre to post test. 
+
+**Example 7**
+```{r}
+plot_re(model = srt_tap_mod, effect = "timePOST", task = "Sentence Reading Task", taps = "Taps", continuous = "Continuous")
+```
+
+**Example 8**
+```{r }
+plot_re(model = srt_tap_cat, effect = "timePOST", task = "Sentence Reading Task", taps = "Taps", continuous = "Categorical") + xlim(-7,7) 
+```
+
+**Example 9**
+```{r figure_3}
+plot_re(model = srt_trill_cat, effect = "timePOST", task = "Sentence Reading Task", taps = "Trills", continuous = "Categorical") + xlim(0,5) +  scale_fill_manual(values=c("#0dbaff"))
+```
+```
